@@ -32,7 +32,7 @@ var register = ExItApp.controller("RegisterCtrl", function ($http, $scope, toast
                     username: $("#username").val(),
                 }
             }).success(function (data) {
-                if (data === false) {
+                if (data === "False") {
                     error += "<li>Tên truy cập đã tồn tại</li>";
                 }
             })

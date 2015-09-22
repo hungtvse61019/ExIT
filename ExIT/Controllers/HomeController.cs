@@ -53,7 +53,6 @@ namespace ExIT.Controllers
             db.SaveChanges();
             Session["UserName"] = username;
             Session["Role"] = "Student";
-            RedirectToAction("Index", "Home");
             return Json("true", JsonRequestBehavior.AllowGet);
         }
 

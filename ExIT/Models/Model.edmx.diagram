@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="20c0089362684d0e912d5b236d2b6cfc" Name="Diagram1">
+        <EntityTypeShape EntityType="ExpITModel.Course" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.Examination" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.Registration" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.Student" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.Subject" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.SubjectAnswer" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.SubjectQuestion" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpITModel.Teacher" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="ExpITModel.FK_Registration_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.FK_Subject_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.FK_Examination_Student1" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.FK_Examination_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.FK_Registration_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.FK_Subject_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.FK_SubjectQuestion_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.FK_SubjectQuestion_SubjectAnswer" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpITModel.Responsibility" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

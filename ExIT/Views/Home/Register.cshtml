@@ -1,0 +1,114 @@
+﻿
+<script src="~/Content/Script/RegisterCtrl.js"></script>
+<div id="register-content" data-ng-controller="RegisterCtrl">
+    <div id="introduction-panel">
+        <div class="title"></div>
+        <div class="introduction-content">
+            <h3>HỌC ĐỂ DÙNG!</h3>
+            Expit.com cung cấp những khóa học mang tính ứng dụng cao cho
+            giới học viên, sinh viên và nhân viên, nhằm giúp ích cho nghề
+            nghiệp hiện tại và tương lai của họ.
+            <img src="image/diacau.png" />
+            <ul>
+                <li><i class="fa fa-check"></i> Nội dung được biên soạn theo kinh nghiệm làm việc thực tế.</li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Phương pháp truyền đạt dễ hiểu. Có thể học tập hiệu quả
+                    trong thời gian ngắn và chi phí thấp.
+                </li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Giao diện học tập hiện đại, thuận tiện.
+                </li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Cùng giao lưu chia sẻ với nhiều thành viên cùng học.
+                </li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Học mọi lúc, mọi nơi.
+                </li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Có giáo viên kèm sát theo từng khóa học.
+                </li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Có đánh giá học viên trên từng khóa học.
+                </li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Tư vấn, định hướng học trong tương lai.
+                </li>
+                <li>
+                    <i class="fa fa-check"></i>
+                    Tư vấn việc làm vị trí phù hợp.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="register-panel">
+        <h1>Đăng Ký Tài Khoản</h1>
+        <div class="section">
+            <div class="section-title">
+                <div class="number">1</div>
+                <h3>Thông tin tài khoản(*)</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Họ và tên(*)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" placeholder="Họ và tên">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label">Tên truy cập(*)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="username" placeholder="Tên truy cập">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Mật khẩu(*)</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" placeholder="Mật khẩu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="repassword" class="col-sm-2 control-label">Nhập lại mật khẩu(*)</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="repassword" placeholder="Nhập lại mật khẩu">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">
+                <div class="number">2</div>
+                <h3>Thông tin liên hệ</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Địa chỉ liên hệ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="address" placeholder="Địa chỉ liên hệ">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label">Số điện thoại</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="phone" placeholder="Số điện thoại">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <button type="button" class="btn btn-default" data-ng-click="register()">Sign in</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1010 @@
+@font-face {
+    font-family: BreeSerif;
+    src: url(../fonts/BreeSerif.otf);
+}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,a, em, font, img,
+strong, ol, ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	background-image: url('../image/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: 100% 100%;
+}
+
+ul {
+	list-style: none;
+}
+
+ol {
+	list-style: decimal;
+}
+
+#page-wrap {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#top-page {
+	overflow: hidden;
+}
+
+#top-page {
+	background:url(../image/logoandsearch.png) no-repeat;
+}
+
+#logo img, #logo {
+	width: 325px;
+	height: 177px;
+	float: left;
+	margin-left: 10px;
+}
+
+#user-info {
+	width: 665px;
+	padding-right: 35px;
+	height: 177px;
+	float: right;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	background-color: transparent;
+}
+
+#user-box li {
+	font-family: Arial;
+	font-size: 20px;
+	float: right;
+	margin-bottom: 15px;
+}
+
+#user-box li a {
+	margin-left: 20px;
+}
+
+#user-box li:first-of-type {
+	border-left: solid 1px #337ab7;
+}
+
+#user-box li:last-of-type {
+	margin-right: 20px;
+}
+
+#search-box {
+	float: right;
+	margin-left: 192px;
+}
+
+#search-box p {
+	margin-bottom: 15px;
+}
+#search-box .input-group {
+	width: 100%;
+}
+
+#search-box .form-control {
+	height: 45px;
+	border-radius: 4px;
+	border-color: #337ab7;
+}
+
+#search-box .btn {
+	position: absolute;
+	right: 12px;
+	top: 10px;
+	background:url(../image/search-tool.PNG) no-repeat;
+	border: none;
+	width: 26px;
+	height: 25px;
+}
+
+#mainNav {
+	background:url(../image/menu-bar.png) no-repeat;
+	height: 71px;
+}
+
+#mainNav ul li {
+	text-align: center;
+	border-right: solid 1px #2F4F4F;
+}
+
+#mainNav ul {
+	height: 71px;
+	padding-top: 23px;
+}
+
+#mainNav ul li a {
+	background: none;
+	padding: 0;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 18px;
+	color: #2F4F4F;
+	display: initial;
+	
+}
+
+#mainNav ul li a:hover {
+	color: #D2691E;
+}
+
+#banner {
+	height: 344px;
+	background:url(../image/banner.png) no-repeat;
+}
+
+#top-courses-panel {
+	margin-top: 2px;
+	border-color: #4b6f00;
+	background-color: rgba(248,248,248,0.8);
+	margin-bottom: 0px;
+}
+
+#top-teachers-panel {
+	margin-top: 2px;
+	border-color: #a52a2a;
+	background-color: rgba(248,248,248,0.8);
+	margin-bottom: 0px;
+}
+
+#top-courses-panel .panel-heading {
+	height: 45px;
+	position: relative;
+	padding-bottom: 0px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5ba95b+0,369636+47,228b22+100 */
+	background: rgb(91,169,91); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgb(91,169,91) 0%, rgb(54,150,54) 47%, rgb(34,139,34) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(91,169,91)), color-stop(47%,rgb(54,150,54)), color-stop(100%,rgb(34,139,34))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgb(91,169,91) 0%,rgb(54,150,54) 47%,rgb(34,139,34) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgb(91,169,91) 0%,rgb(54,150,54) 47%,rgb(34,139,34) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgb(91,169,91) 0%,rgb(54,150,54) 47%,rgb(34,139,34) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgb(91,169,91) 0%,rgb(54,150,54) 47%,rgb(34,139,34) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ba95b', endColorstr='#228b22',GradientType=0 ); /* IE6-9 */
+	border-color: #4b6f00;
+}
+
+#top-teachers-panel .panel-heading {
+	height: 45px;
+	position: relative;
+	padding-bottom: 0px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c35d5b+0,9e4a36+40,8f4227+100 */
+	background: rgb(195,93,91); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgb(195,93,91) 0%, rgb(158,74,54) 40%, rgb(143,66,39) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(195,93,91)), color-stop(40%,rgb(158,74,54)), color-stop(100%,rgb(143,66,39))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgb(195,93,91) 0%,rgb(158,74,54) 40%,rgb(143,66,39) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgb(195,93,91) 0%,rgb(158,74,54) 40%,rgb(143,66,39) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgb(195,93,91) 0%,rgb(158,74,54) 40%,rgb(143,66,39) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgb(195,93,91) 0%,rgb(158,74,54) 40%,rgb(143,66,39) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c35d5b', endColorstr='#8f4227',GradientType=0 ); /* IE6-9 */
+	border-color: #a52a2a;
+}
+
+#top-courses-panel .panel-heading img, #top-teachers-panel .panel-heading img, #course-registration-panel .panel-heading img, #course-panel .panel-heading img, #subject-panel .panel-heading img  {
+	position: absolute;
+	top: -5px;
+}
+
+#top-courses-panel .panel-heading .panel-title, #top-teachers-panel .panel-heading .panel-title, #course-registration-panel .panel-heading .panel-title, #course-panel .panel-heading .panel-title, #subject-panel .panel-heading .panel-title  {
+	font-family: BreeSerif;
+	font-size: 18pt;
+	float: left;
+	margin-left: 65px;
+	color: white;
+	margin-top: 3px;
+}
+
+#top-courses-panel .panel-heading a {
+	float: right;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 17px;
+	text-decoration: none;
+	margin-top: 3px;
+	color: white;
+}
+
+#top-courses-panel .panel-heading a:hover em {
+	font-style: normal;
+}
+
+#top-courses-panel .panel-body, #course-registration-panel .panel-body, #course-panel .panel-body, #subject-panel .panel-body  {
+	padding: 20px 10px;
+}
+
+#top-courses-panel .panel-body .row, #course-panel .panel-body .row, #subject-panel .panel-body .row {
+	margin: 0px;
+}
+
+#top-courses-panel .panel-body .course-box {
+	width: 300px;
+	float: left;
+	margin: 0px 13px;
+	outline: 1px dashed #228b22;
+	outline-offset: 0px;
+	padding: 15px;
+	background-color: rgba(255,255,255,0.6);
+}
+
+#top-courses-panel .course-box .course-title {
+	color: #e46809;
+	font-size: 21px;
+	font-family: BreeSerif;
+	border-bottom: solid 2px #228b22;
+	padding-bottom: 3px;
+}
+
+#top-courses-panel .course-box .course-image img {
+	width: 250px;
+	height: 100px;
+	margin: 10px;
+}
+
+#top-courses-panel .course-box .course-content .content-title {
+	color: #e46809;
+	font-family: BreeSerif;
+	border-bottom: solid 2px #228b22;
+	margin-right: 105px;
+	margin-top: 5px;
+	padding-bottom: 3px;
+}
+
+#top-courses-panel .course-box .course-content .subjects {
+	padding: 10px 0px 5px 20px;
+}
+
+#top-courses-panel .course-box .more {
+	float: right;
+}
+
+#top-teachers-panel .teacher-box, #course-registration-panel .course-registration-box {
+	min-height: 160px;
+	width: 860px;
+	margin: 0 auto;
+}
+
+#top-teachers-panel .teacher-box img, #subject-panel .subject-box img {
+	float: left;
+	margin-right: 10px;
+	width: 146px;
+	height: 146px;
+}
+
+#top-teachers-panel .teacher-info .teacher-name, #subject-panel .teacher-info .teacher-name {
+	color: #e46809;
+	font-family: BreeSerif;
+}
+
+#top-teachers-panel .teacher-seperator {
+	height: 2px;
+	width: 700px;
+	margin: 0 auto;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bd6767+20,a72f2f+50,bd6767+80&0+0,0.8+15,1+19,1+81,0.8+85,0+100 */
+	background: -moz-linear-gradient(left, rgba(189,103,103,0) 0%, rgba(189,103,103,0.8) 15%, rgba(189,103,103,1) 19%, rgba(189,103,103,1) 20%, rgba(167,47,47,1) 50%, rgba(189,103,103,1) 80%, rgba(189,103,103,1) 81%, rgba(189,103,103,0.8) 85%, rgba(189,103,103,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(189,103,103,0)), color-stop(15%,rgba(189,103,103,0.8)), color-stop(19%,rgba(189,103,103,1)), color-stop(20%,rgba(189,103,103,1)), color-stop(50%,rgba(167,47,47,1)), color-stop(80%,rgba(189,103,103,1)), color-stop(81%,rgba(189,103,103,1)), color-stop(85%,rgba(189,103,103,0.8)), color-stop(100%,rgba(189,103,103,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, rgba(189,103,103,0) 0%,rgba(189,103,103,0.8) 15%,rgba(189,103,103,1) 19%,rgba(189,103,103,1) 20%,rgba(167,47,47,1) 50%,rgba(189,103,103,1) 80%,rgba(189,103,103,1) 81%,rgba(189,103,103,0.8) 85%,rgba(189,103,103,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, rgba(189,103,103,0) 0%,rgba(189,103,103,0.8) 15%,rgba(189,103,103,1) 19%,rgba(189,103,103,1) 20%,rgba(167,47,47,1) 50%,rgba(189,103,103,1) 80%,rgba(189,103,103,1) 81%,rgba(189,103,103,0.8) 85%,rgba(189,103,103,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, rgba(189,103,103,0) 0%,rgba(189,103,103,0.8) 15%,rgba(189,103,103,1) 19%,rgba(189,103,103,1) 20%,rgba(167,47,47,1) 50%,rgba(189,103,103,1) 80%,rgba(189,103,103,1) 81%,rgba(189,103,103,0.8) 85%,rgba(189,103,103,0) 100%); /* IE10+ */
+	background: linear-gradient(to right, rgba(189,103,103,0) 0%,rgba(189,103,103,0.8) 15%,rgba(189,103,103,1) 19%,rgba(189,103,103,1) 20%,rgba(167,47,47,1) 50%,rgba(189,103,103,1) 80%,rgba(189,103,103,1) 81%,rgba(189,103,103,0.8) 85%,rgba(189,103,103,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bd6767', endColorstr='#00bd6767',GradientType=1 ); /* IE6-9 */
+	margin-bottom: 15px;
+}
+
+#top-teachers-panel .teacher-seperator:last-of-type {
+	background: none;
+	margin-bottom: 0px;
+}
+
+#footer {
+	height: 193px;
+	margin-top: 3px;
+	background: url(../image/footer.png) no-repeat;
+}
+
+#footer a {
+	float: left;
+	margin: 48px 20px;
+}
+
+#footer img {
+	width: 200px;
+}
+
+#footer #footer-info {
+	padding: 26px 0px;
+}
+
+#footer-info #copyright {
+	font-family: Arial;
+	font-weight: 600;
+	color: #3CB371;
+}
+
+#footer-info #contact {
+	font-family: Arial;
+	font-weight: 600;
+	color: #CD5C5C;
+}
+
+#footer-info #footer-seperator {
+	height: 4px;
+	background-color: #4169E1;
+	margin-left: 235px;
+	margin-right: 130px;
+	box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#course-registration-panel, #course-panel, #subject-panel {
+	margin-top: 2px;
+	border-color: #4682B4;
+	background-color: rgba(248,248,248,0.8);
+	margin-bottom: 0px;
+}
+
+#course-registration-panel .panel-heading, #course-panel .panel-heading, #subject-panel .panel-heading {
+	height: 45px;
+	position: relative;
+	padding-bottom: 0px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5baefd+0,3c9ede+40,2391c5+100 */
+	background: rgb(91,174,253); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzViYWVmZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQwJSIgc3RvcC1jb2xvcj0iIzNjOWVkZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyMzkxYzUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(91,174,253,1) 0%, rgba(60,158,222,1) 40%, rgba(35,145,197,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(91,174,253,1)), color-stop(40%,rgba(60,158,222,1)), color-stop(100%,rgba(35,145,197,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(91,174,253,1) 0%,rgba(60,158,222,1) 40%,rgba(35,145,197,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(91,174,253,1) 0%,rgba(60,158,222,1) 40%,rgba(35,145,197,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(91,174,253,1) 0%,rgba(60,158,222,1) 40%,rgba(35,145,197,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(91,174,253,1) 0%,rgba(60,158,222,1) 40%,rgba(35,145,197,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5baefd', endColorstr='#2391c5',GradientType=0 ); /* IE6-8 */
+	border-color: #4682B4;
+}
+
+#course-registration-panel .panel-heading .breadcrumb, #course-panel .panel-heading .breadcrumb, #subject-panel .panel-heading .breadcrumb {
+	padding: 0px;
+	background: none;
+}
+
+#course-registration-panel .breadcrumb a, #course-panel .breadcrumb a, #subject-panel .breadcrumb a {
+	text-decoration: none;
+}
+
+#course-registration-panel .breadcrumb li.active, #course-panel .breadcrumb li.active,  #subject-panel .breadcrumb li.active {
+	color: white;
+}
+
+#course-registration-panel .course-registration-title {
+	font-family: BreeSerif;
+	margin: 0 auto;
+	width: 250px;
+	color: #1E90FF;
+}
+
+#course-registration-panel .course-registration-box {
+	margin-top: 20px;
+}
+
+#course-registration-panel .course-registration-box img {
+	float: left;
+	margin-right: 10px;
+	width: 250px;
+	height: 100px;
+}
+
+#course-registration-panel .course-registration-name {
+	font-weight: bold;
+}
+
+#course-registration-panel .course-registration-seperator, #subject-panel .subject-seperator {
+	height: 3px;
+	width: 500px;
+	margin: 0 auto;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#80a8ca+20,4783b5+50,80a8ca+80&amp;0+0,0.8+15,1+19,1+81,0.8+85,0+100 */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzgwYThjYSIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjE1JSIgc3RvcC1jb2xvcj0iIzgwYThjYSIgc3RvcC1vcGFjaXR5PSIwLjgiLz4KICAgIDxzdG9wIG9mZnNldD0iMTklIiBzdG9wLWNvbG9yPSIjODBhOGNhIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMjAlIiBzdG9wLWNvbG9yPSIjODBhOGNhIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjNDc4M2I1IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iODAlIiBzdG9wLWNvbG9yPSIjODBhOGNhIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iODElIiBzdG9wLWNvbG9yPSIjODBhOGNhIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iODUlIiBzdG9wLWNvbG9yPSIjODBhOGNhIiBzdG9wLW9wYWNpdHk9IjAuOCIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODBhOGNhIiBzdG9wLW9wYWNpdHk9IjAiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(left,  rgba(128,168,202,0) 0%, rgba(128,168,202,0.8) 15%, rgba(128,168,202,1) 19%, rgba(128,168,202,1) 20%, rgba(71,131,181,1) 50%, rgba(128,168,202,1) 80%, rgba(128,168,202,1) 81%, rgba(128,168,202,0.8) 85%, rgba(128,168,202,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(128,168,202,0)), color-stop(15%,rgba(128,168,202,0.8)), color-stop(19%,rgba(128,168,202,1)), color-stop(20%,rgba(128,168,202,1)), color-stop(50%,rgba(71,131,181,1)), color-stop(80%,rgba(128,168,202,1)), color-stop(81%,rgba(128,168,202,1)), color-stop(85%,rgba(128,168,202,0.8)), color-stop(100%,rgba(128,168,202,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(128,168,202,0) 0%,rgba(128,168,202,0.8) 15%,rgba(128,168,202,1) 19%,rgba(128,168,202,1) 20%,rgba(71,131,181,1) 50%,rgba(128,168,202,1) 80%,rgba(128,168,202,1) 81%,rgba(128,168,202,0.8) 85%,rgba(128,168,202,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(128,168,202,0) 0%,rgba(128,168,202,0.8) 15%,rgba(128,168,202,1) 19%,rgba(128,168,202,1) 20%,rgba(71,131,181,1) 50%,rgba(128,168,202,1) 80%,rgba(128,168,202,1) 81%,rgba(128,168,202,0.8) 85%,rgba(128,168,202,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(128,168,202,0) 0%,rgba(128,168,202,0.8) 15%,rgba(128,168,202,1) 19%,rgba(128,168,202,1) 20%,rgba(71,131,181,1) 50%,rgba(128,168,202,1) 80%,rgba(128,168,202,1) 81%,rgba(128,168,202,0.8) 85%,rgba(128,168,202,0) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(128,168,202,0) 0%,rgba(128,168,202,0.8) 15%,rgba(128,168,202,1) 19%,rgba(128,168,202,1) 20%,rgba(71,131,181,1) 50%,rgba(128,168,202,1) 80%,rgba(128,168,202,1) 81%,rgba(128,168,202,0.8) 85%,rgba(128,168,202,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0080a8ca', endColorstr='#0080a8ca',GradientType=1 ); /* IE6-8 */
+	margin-bottom: 15px;
+}
+
+#course-registration-panel .course-registration-box a {
+	margin-top: 10px;
+	font-size: 17px;
+	float: right;
+	width: 200px;
+}
+
+#top-courses-panel .panel-body .row.course-row, #course-panel .panel-body .row.course-row , #subject-panel .panel-body .row.subject-row{
+	margin-top: 20px;
+}
+
+#top-courses-panel .panel-body #smart-paginator, #course-panel .panel-body #smart-paginator {
+	background: none;
+	width: 600px;
+	margin: 0 auto;
+}
+
+#top-courses-panel #smart-paginator .short, #course-panel #smart-paginator .short {
+	display: none;
+}
+
+#top-courses-panel #smart-paginator span, #course-panel #smart-paginator span {
+	color: green;
+	line-height: 32px;
+}
+
+#top-courses-panel #smart-paginator .btn, #course-panel #smart-paginator .btn{
+	width: auto;
+	padding: 5px;
+}
+
+#top-courses-panel #smart-paginator li>a:focus, #top-courses-panel #smart-paginator li>a:hover
+{
+	color: green;
+}
+
+#course-panel #smart-paginator li>a:focus, #course-panel #smart-paginator li>a:hover {
+	color:  #4169E1;
+}
+
+#course-panel .panel-body .course-box {
+	width: 218px;
+	float: left;
+	margin: 0px 13px;
+}
+
+#course-panel .panel-body .course-box img {
+	width: 230px;
+	height: 120px;
+}
+
+#course-panel .panel-body .course-box .thumbnail {
+	margin: 0;
+}
+
+#course-panel #smart-paginator .btn {
+	background-color: #1E90FF;
+	border: solid 1px #4682B4;
+}
+
+#course-panel #smart-paginator span {
+	color: #4682B4;
+}
+
+#course-panel #smart-paginator a.normal.active {
+	background-color: #4169E1;
+	border: solid 1px #4682B4;
+}
+
+#course-panel #smart-paginator a.normal {
+	background-color: #1E90FF;
+	border: solid 1px #4682B4;
+}
+
+
+#course-panel #smart-paginator a.normal.active:hover {
+	color: white;
+}
+
+#course-panel .panel-body .course-box {
+	width: 218px;
+	float: left;
+	margin: 0px 13px;
+}
+
+#course-panel .panel-body .course-box img {
+	width: 230px;
+	height: 120px;
+}
+
+#course-panel .panel-body .course-box .thumbnail {
+	margin: 0;
+}
+
+#course-panel #smart-paginator .btn {
+	background-color: #1E90FF;
+	border: solid 1px #4682B4;
+}
+
+#course-panel #smart-paginator span {
+	color: #4682B4;
+}
+
+#course-panel #smart-paginator a.normal.active {
+	background-color: #4169E1;
+	border: solid 1px #4682B4;
+}
+
+#course-panel #smart-paginator a.normal {
+	background-color: #1E90FF;
+	border: solid 1px #4682B4;
+}
+
+
+#course-panel #smart-paginator a.normal.active:hover {
+	color: white;
+}
+
+#course-panel .caption h4 {
+	font-size: 20px;
+	font-family: BreeSerif;
+}
+
+#course-panel .thumbnail .btn.btn-primary {
+	margin-top: 5px;
+}
+
+#subject-panel .subject-title {
+	font-family: BreeSerif;
+	margin: 0 auto;
+	width: 280px;
+	color: #1E90FF;
+}
+
+#subject-panel .subject-box {
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+a.btn-green {
+	text-decoration: none;
+	width: 200px;
+	text-align: center;
+	padding: 10px 0px;
+	border-radius: 5px;
+	color: white;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4aa04a+0,228b22+50,4aa04a+100 */
+	background: rgb(74,160,74); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzRhYTA0YSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzIyOGIyMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0YWEwNGEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(74,160,74,1) 0%, rgba(34,139,34,1) 50%, rgba(74,160,74,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(74,160,74,1)), color-stop(50%,rgba(34,139,34,1)), color-stop(100%,rgba(74,160,74,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(74,160,74,1) 0%,rgba(34,139,34,1) 50%,rgba(74,160,74,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(74,160,74,1) 0%,rgba(34,139,34,1) 50%,rgba(74,160,74,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(74,160,74,1) 0%,rgba(34,139,34,1) 50%,rgba(74,160,74,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(74,160,74,1) 0%,rgba(34,139,34,1) 50%,rgba(74,160,74,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4aa04a', endColorstr='#4aa04a',GradientType=0 ); /* IE6-8 */
+}
+
+a.btn-red {
+	text-decoration: none;
+	width: 200px;
+	text-align: center;
+	padding: 10px 0px;
+	border-radius: 5px;
+	color: white;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c35353+0,b22222+50,c35353+100 */
+	background: rgb(195,83,83); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2MzNTM1MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2IyMjIyMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjMzUzNTMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(195,83,83,1) 0%, rgba(178,34,34,1) 50%, rgba(195,83,83,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(195,83,83,1)), color-stop(50%,rgba(178,34,34,1)), color-stop(100%,rgba(195,83,83,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c35353', endColorstr='#c35353',GradientType=0 ); /* IE6-8 */
+
+}
+
+#subject-panel .subject-box.subject-btn a {
+	float: right;
+	margin-left: 15px;
+}
+
+#subject-panel .subject-box.test-btn a {
+	float: none;
+	margin: 0 auto;
+	display: block;
+}
+
+a.btn-red:hover, a.btn-green:hover {
+	-webkit-box-shadow:inset 0 0 20px 5px rgba(0,0,0,0.3);
+	box-shadow:inset 0 0 20px 5px rgba(0,0,0,0.3);
+}
+
+#subject-panel .files .practical-file img {
+	width: 60px;
+	height: 60px;
+	float: initial;
+	float: left;
+}
+
+#subject-panel .files .practical-file {
+	position: relative;
+	float: left;
+	width: 50%;
+}
+
+#subject-panel .files .practical-file a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 17px;
+	margin-bottom: 15px;
+	float: left;
+	line-height: 60px;
+}
+
+#note {
+	color: red;
+	float: right;
+	width: 100%;
+	text-align: right;
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+.table.test-table tr:nth-of-type(even) {
+	background-color: rgba(65,105,225,0.7);
+}
+#content {
+	margin-top: 2px;
+    border: solid 1px #e46809;
+    background-color: rgba(248,248,248,0.8);
+    margin-bottom: 0px;
+	border-radius: 5px;
+}
+
+#content-title {
+	font-family: BreeSerif;
+	color: #e46809;
+	padding: 10px;
+}
+
+#question-number {
+	background-color: #e46809;
+	padding: 10px 40px;
+	font-family: Arial;
+	font-weight: bold;
+	color: white;
+	font-size: 15px;
+}
+
+#test-content {
+	padding: 10px 80px;
+}
+
+#test-question {
+	font-weight: bold;
+	font-style: italic;
+}
+
+#test-control {
+	padding: 10px 80px;
+	background-color: rgba(228,104,9,0.4);
+	height: 60px;
+}
+
+#question-selection {
+	float: left;
+	line-height: 45px;
+}
+
+#question-selection a {
+	text-decoration: none;
+	color: white;
+	font-style: italic;
+	font-size: 15px;
+	margin-right: 10px;
+}
+
+#question-selection a:hover {
+	font-style: normal;
+}
+
+#outline {
+	float: left;
+	margin-left: 200px;
+	line-height: 45px;
+	color:	white;
+}
+
+#outline img {
+	float: left;
+	margin-right: 10px;
+}
+
+#content {
+	background: url(../image/test-background.png) no-repeat;
+	background-position: center;
+	margin-top: 2px;
+    border: solid 1px #e46809;
+    margin-bottom: 0px;
+	border-radius: 5px;
+}
+
+#content-title {
+	font-family: BreeSerif;
+	color: #e46809;
+	padding: 10px;
+}
+
+#question-number {
+	background-color: #e46809;
+	padding: 10px 40px;
+	font-family: Arial;
+	font-weight: bold;
+	color: white;
+	font-size: 15px;
+}
+
+#test-content {
+	padding: 10px 80px;
+}
+
+#test-question {
+	font-weight: bold;
+	font-style: italic;
+}
+
+#test-control {
+	padding: 10px 80px;
+	background-color: rgba(228,104,9,0.4);
+	height: 60px;
+}
+
+#question-selection {
+	float: left;
+	line-height: 45px;
+}
+
+#question-selection a {
+	text-decoration: none;
+	color: white;
+	font-style: italic;
+	font-size: 15px;
+	margin-right: 10px;
+}
+
+#question-selection a:hover {
+	font-style: normal;
+}
+
+#outline {
+	float: left;
+	margin-left: 200px;
+	line-height: 45px;
+	color:	white;
+}
+
+#outline img {
+	float: left;
+	margin-right: 10px;
+}
+
+.right-btn .btn-green {
+	float: right;
+}
+
+#outline img {
+	margin-top: -5px;
+}
+
+#content {
+	background-position: center;
+}
+
+#outline a {
+	color: white;
+	text-decoration: none;
+}
+
+#outline a:hover em {
+	font-style: normal;
+}
+
+#boxer {
+	width: 800px !important;
+	border-radius: 10px !important;
+	padding: 0px !important;
+	height: auto !important;
+}
+
+#boxer .boxer-container {
+	border-radius: 10px !important;
+	height: auto;
+}
+
+#boxer .header {
+	background-color: #e46809;
+	color: white;
+	font-size: 16px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: 600;
+}
+
+#boxer .header #header-1 {
+	float: left;
+	margin-left: 20px;
+}
+
+#boxer .header #header-2 {
+	float: right;
+	margin-right: 70px;
+}
+
+#boxer .boxer-close {
+	border-radius: 5px;
+	top: 4px;
+	right: 10px;
+	width: 35px;
+}
+
+#boxer .boxer-close:before {
+	line-height: 33px;
+}
+
+#boxer .questions {
+	padding: 0px 15px 0px 25px;
+	max-height: 500px !important;
+	overflow-y: scroll !important;
+	margin-right: 22px;
+}
+
+#boxer .questions .question {
+	display: block;
+	height: auto;
+	line-height: 20px;
+	border-bottom: 1px solid black;	
+	float: left;	
+	padding: 5px 0px;
+	position: relative;
+}
+
+#boxer .questions .question:last-of-type {
+	border: none;
+}
+
+
+#boxer .question #question-content {
+	float: left;
+	width: 710px;
+	padding-right: 90px;
+	cursor: pointer;
+}
+
+#boxer .question #status {
+	right: -15px;
+	position: absolute;
+  	top: 49%;
+  	transform: translateY(-50%);
+	margin-right: 50px;
+	color: green;
+	font-size: 15px;
+}
+
+#boxer .content .note {
+	float: left;
+	background-color: #E6E6FA;
+	width: 100%;
+}
+
+#boxer .content .note div {
+	float: left;
+	width: 33%;
+	text-align: center;
+	line-height: 40px;
+	font-weight: bold;
+}
+
+#boxer .questions::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+	
+}
+
+#boxer .questions::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#boxer .questions::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #e46809;
+}
+
+.center-btn a.btn-green {
+	margin: 0 auto;
+    display: block;
+}
+
+.panel-table {
+	display: table;
+	width: 100%;
+	border-radius: 5px;
+	border: solid 1px #dcdcdc;
+	margin: 20px 0px;
+}
+
+.panel-table ul {
+	display: table-row;
+}
+
+.panel-table ul li {
+	display: table-cell;
+	width: 1%;
+	text-align: center;
+}
+
+.panel-table ul.body {
+	height: 100px;
+	line-height: 100px;
+	background-color: #f3f4ee;
+	color: #2f4f4f;
+	font-size: 25px;
+}
+
+.panel-table ul.body li {
+	border-top: solid 1px #dcdcdc;
+}
+
+.panel-table ul.header {
+	font-size: 18px;
+	line-height: 45px;
+	font-weight: 600;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#efefef+0,dcdcdc+50,efefef+100 */
+	background: rgb(239,239,239); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VmZWZlZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2RjZGNkYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZmVmZWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(239,239,239,1) 0%, rgba(220,220,220,1) 50%, rgba(239,239,239,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(220,220,220,1)), color-stop(100%,rgba(239,239,239,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(220,220,220,1) 50%,rgba(239,239,239,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(220,220,220,1) 50%,rgba(239,239,239,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(239,239,239,1) 0%,rgba(220,220,220,1) 50%,rgba(239,239,239,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(239,239,239,1) 0%,rgba(220,220,220,1) 50%,rgba(239,239,239,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#efefef',GradientType=0 ); /* IE6-8 */
+}
+
+.panel-table ul li {
+	border-right: solid 1px #dcdcdc;
+}
+
+
+.panel-table ul li:last-of-type {
+	border-right: none;
+} 
+
+#final-result {
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+#course-registration-panel .list-group-item {
+	padding: 10px 40px;
+}
+
+.table tr td {
+	text-align: center;
+	vertical-align: middle !important;;
+}
+
+.table tr td input {
+	margin: 0 auto;
+}
+
+.table tr th {
+	text-align: center;
+}
+
+.table tr td img {
+	height: 25px;
+}

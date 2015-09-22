@@ -15,34 +15,52 @@ namespace ExIT.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Course
+public partial class User
 {
 
-    public Course()
+    public User()
     {
+
+        this.Examinations = new HashSet<Examination>();
 
         this.Registrations = new HashSet<Registration>();
 
         this.Subjects = new HashSet<Subject>();
 
-        this.Users = new HashSet<User>();
+        this.Courses = new HashSet<Course>();
 
     }
 
 
     public int ID { get; set; }
 
-    public string name { get; set; }
+    public string username { get; set; }
 
-    public int rank { get; set; }
+    public string password { get; set; }
+
+    public string address { get; set; }
+
+    public string email { get; set; }
+
+    public Nullable<int> rank { get; set; }
+
+    public Nullable<int> roleId { get; set; }
+
+    public string company { get; set; }
+
+    public string information { get; set; }
 
 
+
+    public virtual ICollection<Examination> Examinations { get; set; }
 
     public virtual ICollection<Registration> Registrations { get; set; }
 
+    public virtual Role Role { get; set; }
+
     public virtual ICollection<Subject> Subjects { get; set; }
 
-    public virtual ICollection<User> Users { get; set; }
+    public virtual ICollection<Course> Courses { get; set; }
 
 }
 

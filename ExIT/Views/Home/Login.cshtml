@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/Script/LoginCtrl.js"></script>
+<h2 class="course-registration-title" style="width: 155px">Đăng Nhập</h2>
+<div class="course-registration-seperator"></div>
+<div class="course-registration-box" style="width: 670px" data-ng-controller="LoginCtrl">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">Tên truy cập</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Tên truy cập">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Mật khẩu</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" placeholder="Mật khẩu">
+            </div>
+        </div>
+    </div>
+    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+    <a  class="btn btn-primary" style="float: none; margin: 0 auto; display: block" 
+       data-ng-click="login()">Đăng Nhập</a>
+</div>
+

@@ -38,16 +38,12 @@
     <Property Name="TeacherID" Type="int" Nullable="false" />
     <Property Name="CourseID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Student">
+  <EntityType Name="Role">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="address" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="rank" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Subject">
     <Key>
@@ -90,25 +86,27 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <EntityType Name="Teacher">
+  <EntityType Name="User">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="address" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="information" Type="text" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="rank" Type="int" />
+    <Property Name="roleId" Type="int" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" />
+    <Property Name="information" Type="text" />
   </EntityType>
   <Association Name="FK_Examination_Student1">
-    <End Role="Student" Type="Self.Student" Multiplicity="1">
+    <End Role="User" Type="Self.User" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Examination" Type="Self.Examination" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Student">
+      <Principal Role="User">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Examination">
@@ -145,12 +143,12 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Registration_Student">
-    <End Role="Student" Type="Self.Student" Multiplicity="1">
+    <End Role="User" Type="Self.User" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Student">
+      <Principal Role="User">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Registration">
@@ -172,13 +170,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Responsibility_Teacher">
-    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+  <Association Name="FK_Responsibility_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Responsibility" Type="Self.Responsibility" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Teacher">
+      <Principal Role="User">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Responsibility">
@@ -200,13 +196,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Subject_Teacher">
-    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+  <Association Name="FK_Subject_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Teacher">
+      <Principal Role="User">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Subject">
@@ -242,19 +236,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ExpITModelStoreContainer">
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Examination" EntityType="Self.Examination" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Responsibility" EntityType="Self.Responsibility" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubjectAnswer" EntityType="Self.SubjectAnswer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubjectQuestion" EntityType="Self.SubjectQuestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Examination_Student1" Association="Self.FK_Examination_Student1">
-      <End Role="Student" EntitySet="Student" />
+      <End Role="User" EntitySet="User" />
       <End Role="Examination" EntitySet="Examination" />
     </AssociationSet>
     <AssociationSet Name="FK_Examination_Subject" Association="Self.FK_Examination_Subject">
@@ -266,23 +272,23 @@
       <End Role="Registration" EntitySet="Registration" />
     </AssociationSet>
     <AssociationSet Name="FK_Registration_Student" Association="Self.FK_Registration_Student">
-      <End Role="Student" EntitySet="Student" />
+      <End Role="User" EntitySet="User" />
       <End Role="Registration" EntitySet="Registration" />
     </AssociationSet>
     <AssociationSet Name="FK_Responsibility_Course" Association="Self.FK_Responsibility_Course">
       <End Role="Course" EntitySet="Course" />
       <End Role="Responsibility" EntitySet="Responsibility" />
     </AssociationSet>
-    <AssociationSet Name="FK_Responsibility_Teacher" Association="Self.FK_Responsibility_Teacher">
-      <End Role="Teacher" EntitySet="Teacher" />
+    <AssociationSet Name="FK_Responsibility_User" Association="Self.FK_Responsibility_User">
+      <End Role="User" EntitySet="User" />
       <End Role="Responsibility" EntitySet="Responsibility" />
     </AssociationSet>
     <AssociationSet Name="FK_Subject_Course" Association="Self.FK_Subject_Course">
       <End Role="Course" EntitySet="Course" />
       <End Role="Subject" EntitySet="Subject" />
     </AssociationSet>
-    <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
-      <End Role="Teacher" EntitySet="Teacher" />
+    <AssociationSet Name="FK_Subject_User" Association="Self.FK_Subject_User">
+      <End Role="User" EntitySet="User" />
       <End Role="Subject" EntitySet="Subject" />
     </AssociationSet>
     <AssociationSet Name="FK_SubjectQuestion_Subject" Association="Self.FK_SubjectQuestion_Subject">
@@ -292,6 +298,10 @@
     <AssociationSet Name="FK_SubjectQuestion_SubjectAnswer" Association="Self.FK_SubjectQuestion_SubjectAnswer">
       <End Role="SubjectAnswer" EntitySet="SubjectAnswer" />
       <End Role="SubjectQuestion" EntitySet="SubjectQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

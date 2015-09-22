@@ -15,20 +15,24 @@ namespace ExIT.Models
 using System;
     using System.Collections.Generic;
     
-public partial class SubjectQuestion
+public partial class Role
 {
 
-    public int ID { get; set; }
+    public Role()
+    {
 
-    public string question { get; set; }
+        this.Users = new HashSet<User>();
 
-    public int SubjectID { get; set; }
+    }
+
+
+    public int Id { get; set; }
+
+    public string name { get; set; }
 
 
 
-    public virtual Subject Subject { get; set; }
-
-    public virtual SubjectAnswer SubjectAnswer { get; set; }
+    public virtual ICollection<User> Users { get; set; }
 
 }
 

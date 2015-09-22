@@ -4,110 +4,108 @@
     <EntitySetMapping Name="Courses">
       <EntityTypeMapping TypeName="ExpITModel.Course">
         <MappingFragment StoreEntitySet="Course">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="rank" ColumnName="rank" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Examinations">
       <EntityTypeMapping TypeName="ExpITModel.Examination">
         <MappingFragment StoreEntitySet="Examination">
-          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
-          <ScalarProperty Name="PraticalScore" ColumnName="PraticalScore" />
-          <ScalarProperty Name="ThesisScore" ColumnName="ThesisScore" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="ThesisDoneTime" ColumnName="ThesisDoneTime" />
           <ScalarProperty Name="PraticalDoneTime" ColumnName="PraticalDoneTime" />
+          <ScalarProperty Name="ThesisDoneTime" ColumnName="ThesisDoneTime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="ThesisScore" ColumnName="ThesisScore" />
+          <ScalarProperty Name="PraticalScore" ColumnName="PraticalScore" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Registrations">
       <EntityTypeMapping TypeName="ExpITModel.Registration">
         <MappingFragment StoreEntitySet="Registration">
-          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Students">
-      <EntityTypeMapping TypeName="ExpITModel.Student">
-        <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="rank" ColumnName="rank" />
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ExpITModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Subjects">
       <EntityTypeMapping TypeName="ExpITModel.Subject">
         <MappingFragment StoreEntitySet="Subject">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="information" ColumnName="information" />
-          <ScalarProperty Name="PraticalFile" ColumnName="PraticalFile" />
-          <ScalarProperty Name="PraticalText" ColumnName="PraticalText" />
-          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
-          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-          <ScalarProperty Name="NumberOfQuestion" ColumnName="NumberOfQuestion" />
           <ScalarProperty Name="ThesisTime" ColumnName="ThesisTime" />
+          <ScalarProperty Name="NumberOfQuestion" ColumnName="NumberOfQuestion" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="PraticalText" ColumnName="PraticalText" />
+          <ScalarProperty Name="PraticalFile" ColumnName="PraticalFile" />
+          <ScalarProperty Name="information" ColumnName="information" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SubjectAnswers">
       <EntityTypeMapping TypeName="ExpITModel.SubjectAnswer">
         <MappingFragment StoreEntitySet="SubjectAnswer">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="answer" ColumnName="answer" />
-          <ScalarProperty Name="result" ColumnName="result" />
           <ScalarProperty Name="SubjectQuestionID" ColumnName="SubjectQuestionID" />
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="answer" ColumnName="answer" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SubjectQuestions">
       <EntityTypeMapping TypeName="ExpITModel.SubjectQuestion">
         <MappingFragment StoreEntitySet="SubjectQuestion">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="question" ColumnName="question" />
           <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="question" ColumnName="question" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="ExpITModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Teachers">
-      <EntityTypeMapping TypeName="ExpITModel.Teacher">
-        <MappingFragment StoreEntitySet="Teacher">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ExpITModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="information" ColumnName="information" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="rank" ColumnName="rank" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="company" ColumnName="company" />
-          <ScalarProperty Name="information" ColumnName="information" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="Responsibility" TypeName="ExpITModel.Responsibility" StoreEntitySet="Responsibility">
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="TeacherID" />
+      </EndProperty>
       <EndProperty Name="Course">
         <ScalarProperty Name="ID" ColumnName="CourseID" />
-      </EndProperty>
-      <EndProperty Name="Teacher">
-        <ScalarProperty Name="ID" ColumnName="TeacherID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

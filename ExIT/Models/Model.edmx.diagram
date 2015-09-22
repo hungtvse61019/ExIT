@@ -5,24 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="20c0089362684d0e912d5b236d2b6cfc" Name="Diagram1">
-        <EntityTypeShape EntityType="ExpITModel.Course" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.Examination" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.Registration" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.Student" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.Subject" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.SubjectAnswer" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.SubjectQuestion" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExpITModel.Teacher" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
-        <AssociationConnector Association="ExpITModel.FK_Registration_Course" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.FK_Subject_Course" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.FK_Examination_Student1" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.FK_Examination_Subject" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.FK_Registration_Student" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.FK_Subject_Teacher" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.FK_SubjectQuestion_Subject" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.FK_SubjectQuestion_SubjectAnswer" ManuallyRouted="false" />
-        <AssociationConnector Association="ExpITModel.Responsibility" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ExpITModel.Course" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ExpITModel.Examination" Width="1.5" PointX="8.25" PointY="2.375" />
+        <EntityTypeShape EntityType="ExpITModel.Registration" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="ExpITModel.Role" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="ExpITModel.Subject" Width="1.5" PointX="6" PointY="6" />
+        <EntityTypeShape EntityType="ExpITModel.SubjectAnswer" Width="1.5" PointX="6" PointY="2.75" />
+        <EntityTypeShape EntityType="ExpITModel.SubjectQuestion" Width="1.5" PointX="8.25" PointY="6.75" />
+        <EntityTypeShape EntityType="ExpITModel.sysdiagram" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ExpITModel.User" Width="1.5" PointX="3" PointY="2" />
+        <AssociationConnector Association="ExpITModel.FK_Registration_Course" />
+        <AssociationConnector Association="ExpITModel.FK_Subject_Course" />
+        <AssociationConnector Association="ExpITModel.FK_Examination_Student1" />
+        <AssociationConnector Association="ExpITModel.FK_Examination_Subject" />
+        <AssociationConnector Association="ExpITModel.FK_Registration_Student" />
+        <AssociationConnector Association="ExpITModel.FK_User_Role" />
+        <AssociationConnector Association="ExpITModel.FK_Subject_User" />
+        <AssociationConnector Association="ExpITModel.FK_SubjectQuestion_Subject" />
+        <AssociationConnector Association="ExpITModel.FK_SubjectQuestion_SubjectAnswer" />
+        <AssociationConnector Association="ExpITModel.Responsibility" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

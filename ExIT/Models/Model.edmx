@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ExpITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ExpITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="ID" />
@@ -43,16 +43,12 @@
           <Property Name="TeacherID" Type="int" Nullable="false" />
           <Property Name="CourseID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Student">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="address" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="rank" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -95,25 +91,27 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Teacher">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="company" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="information" Type="text" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="rank" Type="int" />
+          <Property Name="roleId" Type="int" />
+          <Property Name="company" Type="nvarchar" MaxLength="50" />
+          <Property Name="information" Type="text" />
         </EntityType>
         <Association Name="FK_Examination_Student1">
-          <End Role="Student" Type="Self.Student" Multiplicity="1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Examination" Type="Self.Examination" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Examination">
@@ -150,12 +148,12 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Registration_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Registration">
@@ -177,13 +175,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Responsibility_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_Responsibility_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Responsibility" Type="Self.Responsibility" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teacher">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Responsibility">
@@ -205,13 +201,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Subject_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_Subject_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teacher">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Subject">
@@ -247,19 +241,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ExpITModelStoreContainer">
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Examination" EntityType="Self.Examination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Responsibility" EntityType="Self.Responsibility" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectAnswer" EntityType="Self.SubjectAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectQuestion" EntityType="Self.SubjectQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Examination_Student1" Association="Self.FK_Examination_Student1">
-            <End Role="Student" EntitySet="Student" />
+            <End Role="User" EntitySet="User" />
             <End Role="Examination" EntitySet="Examination" />
           </AssociationSet>
           <AssociationSet Name="FK_Examination_Subject" Association="Self.FK_Examination_Subject">
@@ -271,23 +277,23 @@
             <End Role="Registration" EntitySet="Registration" />
           </AssociationSet>
           <AssociationSet Name="FK_Registration_Student" Association="Self.FK_Registration_Student">
-            <End Role="Student" EntitySet="Student" />
+            <End Role="User" EntitySet="User" />
             <End Role="Registration" EntitySet="Registration" />
           </AssociationSet>
           <AssociationSet Name="FK_Responsibility_Course" Association="Self.FK_Responsibility_Course">
             <End Role="Course" EntitySet="Course" />
             <End Role="Responsibility" EntitySet="Responsibility" />
           </AssociationSet>
-          <AssociationSet Name="FK_Responsibility_Teacher" Association="Self.FK_Responsibility_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
+          <AssociationSet Name="FK_Responsibility_User" Association="Self.FK_Responsibility_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Responsibility" EntitySet="Responsibility" />
           </AssociationSet>
           <AssociationSet Name="FK_Subject_Course" Association="Self.FK_Subject_Course">
             <End Role="Course" EntitySet="Course" />
             <End Role="Subject" EntitySet="Subject" />
           </AssociationSet>
-          <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
+          <AssociationSet Name="FK_Subject_User" Association="Self.FK_Subject_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Subject" EntitySet="Subject" />
           </AssociationSet>
           <AssociationSet Name="FK_SubjectQuestion_Subject" Association="Self.FK_SubjectQuestion_Subject">
@@ -298,22 +304,76 @@
             <End Role="SubjectAnswer" EntitySet="SubjectAnswer" />
             <End Role="SubjectQuestion" EntitySet="SubjectQuestion" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExpITModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ExpITEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Courses" EntityType="ExpITModel.Course" />
+          <EntitySet Name="Examinations" EntityType="ExpITModel.Examination" />
+          <EntitySet Name="Registrations" EntityType="ExpITModel.Registration" />
+          <EntitySet Name="Roles" EntityType="ExpITModel.Role" />
+          <EntitySet Name="Subjects" EntityType="ExpITModel.Subject" />
+          <EntitySet Name="SubjectAnswers" EntityType="ExpITModel.SubjectAnswer" />
+          <EntitySet Name="SubjectQuestions" EntityType="ExpITModel.SubjectQuestion" />
+          <EntitySet Name="sysdiagrams" EntityType="ExpITModel.sysdiagram" />
+          <EntitySet Name="Users" EntityType="ExpITModel.User" />
+          <AssociationSet Name="FK_Registration_Course" Association="ExpITModel.FK_Registration_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Course" Association="ExpITModel.FK_Subject_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Examination_Student1" Association="ExpITModel.FK_Examination_Student1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Examination" EntitySet="Examinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Examination_Subject" Association="ExpITModel.FK_Examination_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Examination" EntitySet="Examinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Student" Association="ExpITModel.FK_Registration_Student">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="ExpITModel.FK_User_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_User" Association="ExpITModel.FK_Subject_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectQuestion_Subject" Association="ExpITModel.FK_SubjectQuestion_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="SubjectQuestion" EntitySet="SubjectQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectQuestion_SubjectAnswer" Association="ExpITModel.FK_SubjectQuestion_SubjectAnswer">
+            <End Role="SubjectAnswer" EntitySet="SubjectAnswers" />
+            <End Role="SubjectQuestion" EntitySet="SubjectQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="Responsibility" Association="ExpITModel.Responsibility">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="rank" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Registrations" Relationship="Self.FK_Registration_Course" FromRole="Course" ToRole="Registration" />
-          <NavigationProperty Name="Subjects" Relationship="Self.FK_Subject_Course" FromRole="Course" ToRole="Subject" />
-          <NavigationProperty Name="Teachers" Relationship="Self.Responsibility" FromRole="Course" ToRole="Teacher" />
+          <NavigationProperty Name="Registrations" Relationship="ExpITModel.FK_Registration_Course" FromRole="Course" ToRole="Registration" />
+          <NavigationProperty Name="Subjects" Relationship="ExpITModel.FK_Subject_Course" FromRole="Course" ToRole="Subject" />
+          <NavigationProperty Name="Users" Relationship="ExpITModel.Responsibility" FromRole="Course" ToRole="User" />
         </EntityType>
         <EntityType Name="Examination">
           <Key>
@@ -325,10 +385,10 @@
           <Property Name="PraticalScore" Type="Single" Nullable="false" />
           <Property Name="ThesisScore" Type="Single" Nullable="false" />
           <Property Name="status" Type="Int32" Nullable="false" />
-          <Property Name="ThesisDoneTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PraticalDoneTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Examination_Student1" FromRole="Examination" ToRole="Student" />
-          <NavigationProperty Name="Subject" Relationship="Self.FK_Examination_Subject" FromRole="Examination" ToRole="Subject" />
+          <Property Name="ThesisDoneTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PraticalDoneTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="ExpITModel.FK_Examination_Student1" FromRole="Examination" ToRole="User" />
+          <NavigationProperty Name="Subject" Relationship="ExpITModel.FK_Examination_Subject" FromRole="Examination" ToRole="Subject" />
         </EntityType>
         <EntityType Name="Registration">
           <Key>
@@ -338,89 +398,89 @@
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <Property Name="CourseID" Type="Int32" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_Registration_Course" FromRole="Registration" ToRole="Course" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Registration_Student" FromRole="Registration" ToRole="Student" />
+          <NavigationProperty Name="Course" Relationship="ExpITModel.FK_Registration_Course" FromRole="Registration" ToRole="Course" />
+          <NavigationProperty Name="User" Relationship="ExpITModel.FK_Registration_Student" FromRole="Registration" ToRole="User" />
         </EntityType>
-        <EntityType Name="Student">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="rank" Type="Int32" />
-          <NavigationProperty Name="Examinations" Relationship="Self.FK_Examination_Student1" FromRole="Student" ToRole="Examination" />
-          <NavigationProperty Name="Registrations" Relationship="Self.FK_Registration_Student" FromRole="Student" ToRole="Registration" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="ExpITModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="information" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PraticalFile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PraticalText" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="information" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PraticalFile" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PraticalText" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="TeacherID" Type="Int32" Nullable="false" />
           <Property Name="CourseID" Type="Int32" Nullable="false" />
           <Property Name="NumberOfQuestion" Type="Int32" Nullable="false" />
           <Property Name="ThesisTime" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_Subject_Course" FromRole="Subject" ToRole="Course" />
-          <NavigationProperty Name="Examinations" Relationship="Self.FK_Examination_Subject" FromRole="Subject" ToRole="Examination" />
-          <NavigationProperty Name="Teacher" Relationship="Self.FK_Subject_Teacher" FromRole="Subject" ToRole="Teacher" />
-          <NavigationProperty Name="SubjectQuestions" Relationship="Self.FK_SubjectQuestion_Subject" FromRole="Subject" ToRole="SubjectQuestion" />
+          <NavigationProperty Name="Course" Relationship="ExpITModel.FK_Subject_Course" FromRole="Subject" ToRole="Course" />
+          <NavigationProperty Name="Examinations" Relationship="ExpITModel.FK_Examination_Subject" FromRole="Subject" ToRole="Examination" />
+          <NavigationProperty Name="User" Relationship="ExpITModel.FK_Subject_User" FromRole="Subject" ToRole="User" />
+          <NavigationProperty Name="SubjectQuestions" Relationship="ExpITModel.FK_SubjectQuestion_Subject" FromRole="Subject" ToRole="SubjectQuestion" />
         </EntityType>
         <EntityType Name="SubjectAnswer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="answer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="answer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="result" Type="Boolean" Nullable="false" />
           <Property Name="SubjectQuestionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SubjectQuestions" Relationship="Self.FK_SubjectQuestion_SubjectAnswer" FromRole="SubjectAnswer" ToRole="SubjectQuestion" />
+          <NavigationProperty Name="SubjectQuestions" Relationship="ExpITModel.FK_SubjectQuestion_SubjectAnswer" FromRole="SubjectAnswer" ToRole="SubjectQuestion" />
         </EntityType>
         <EntityType Name="SubjectQuestion">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="question" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SubjectID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Subject" Relationship="Self.FK_SubjectQuestion_Subject" FromRole="SubjectQuestion" ToRole="Subject" />
-          <NavigationProperty Name="SubjectAnswer" Relationship="Self.FK_SubjectQuestion_SubjectAnswer" FromRole="SubjectQuestion" ToRole="SubjectAnswer" />
+          <NavigationProperty Name="Subject" Relationship="ExpITModel.FK_SubjectQuestion_Subject" FromRole="SubjectQuestion" ToRole="Subject" />
+          <NavigationProperty Name="SubjectAnswer" Relationship="ExpITModel.FK_SubjectQuestion_SubjectAnswer" FromRole="SubjectQuestion" ToRole="SubjectAnswer" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Teacher">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="information" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Subjects" Relationship="Self.FK_Subject_Teacher" FromRole="Teacher" ToRole="Subject" />
-          <NavigationProperty Name="Courses" Relationship="Self.Responsibility" FromRole="Teacher" ToRole="Course" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="rank" Type="Int32" />
+          <Property Name="roleId" Type="Int32" />
+          <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="information" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Examinations" Relationship="ExpITModel.FK_Examination_Student1" FromRole="User" ToRole="Examination" />
+          <NavigationProperty Name="Registrations" Relationship="ExpITModel.FK_Registration_Student" FromRole="User" ToRole="Registration" />
+          <NavigationProperty Name="Role" Relationship="ExpITModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Subjects" Relationship="ExpITModel.FK_Subject_User" FromRole="User" ToRole="Subject" />
+          <NavigationProperty Name="Courses" Relationship="ExpITModel.Responsibility" FromRole="User" ToRole="Course" />
         </EntityType>
         <Association Name="FK_Registration_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1">
+          <End Type="ExpITModel.Course" Role="Course" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <End Type="ExpITModel.Registration" Role="Registration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
@@ -431,10 +491,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Subject_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1">
+          <End Type="ExpITModel.Course" Role="Course" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <End Type="ExpITModel.Subject" Role="Subject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
@@ -445,12 +505,12 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Examination_Student1">
-          <End Role="Student" Type="Self.Student" Multiplicity="1">
+          <End Type="ExpITModel.User" Role="User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Examination" Type="Self.Examination" Multiplicity="*" />
+          <End Type="ExpITModel.Examination" Role="Examination" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Examination">
@@ -459,10 +519,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Examination_Subject">
-          <End Role="Subject" Type="Self.Subject" Multiplicity="1">
+          <End Type="ExpITModel.Subject" Role="Subject" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Examination" Type="Self.Examination" Multiplicity="*" />
+          <End Type="ExpITModel.Examination" Role="Examination" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subject">
               <PropertyRef Name="ID" />
@@ -473,12 +533,12 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Registration_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1">
+          <End Type="ExpITModel.User" Role="User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <End Type="ExpITModel.Registration" Role="Registration" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Registration">
@@ -486,13 +546,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Subject_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+        <Association Name="FK_User_Role">
+          <End Type="ExpITModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="ExpITModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teacher">
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_User">
+          <End Type="ExpITModel.User" Role="User" Multiplicity="1" />
+          <End Type="ExpITModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Subject">
@@ -501,10 +571,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubjectQuestion_Subject">
-          <End Role="Subject" Type="Self.Subject" Multiplicity="1">
+          <End Type="ExpITModel.Subject" Role="Subject" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="SubjectQuestion" Type="Self.SubjectQuestion" Multiplicity="*" />
+          <End Type="ExpITModel.SubjectQuestion" Role="SubjectQuestion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subject">
               <PropertyRef Name="ID" />
@@ -515,10 +585,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubjectQuestion_SubjectAnswer">
-          <End Role="SubjectAnswer" Type="Self.SubjectAnswer" Multiplicity="1">
+          <End Type="ExpITModel.SubjectAnswer" Role="SubjectAnswer" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="SubjectQuestion" Type="Self.SubjectQuestion" Multiplicity="*" />
+          <End Type="ExpITModel.SubjectQuestion" Role="SubjectQuestion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubjectAnswer">
               <PropertyRef Name="ID" />
@@ -529,56 +599,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Responsibility">
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <End Type="ExpITModel.Course" Role="Course" Multiplicity="*" />
+          <End Type="ExpITModel.User" Role="User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="ExpITEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Courses" EntityType="Self.Course" />
-          <EntitySet Name="Examinations" EntityType="Self.Examination" />
-          <EntitySet Name="Registrations" EntityType="Self.Registration" />
-          <EntitySet Name="Students" EntityType="Self.Student" />
-          <EntitySet Name="Subjects" EntityType="Self.Subject" />
-          <EntitySet Name="SubjectAnswers" EntityType="Self.SubjectAnswer" />
-          <EntitySet Name="SubjectQuestions" EntityType="Self.SubjectQuestion" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
-          <AssociationSet Name="FK_Registration_Course" Association="Self.FK_Registration_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="Registration" EntitySet="Registrations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subject_Course" Association="Self.FK_Subject_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="Subject" EntitySet="Subjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Examination_Student1" Association="Self.FK_Examination_Student1">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Examination" EntitySet="Examinations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Examination_Subject" Association="Self.FK_Examination_Subject">
-            <End Role="Subject" EntitySet="Subjects" />
-            <End Role="Examination" EntitySet="Examinations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registration_Student" Association="Self.FK_Registration_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Registration" EntitySet="Registrations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="Subject" EntitySet="Subjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubjectQuestion_Subject" Association="Self.FK_SubjectQuestion_Subject">
-            <End Role="Subject" EntitySet="Subjects" />
-            <End Role="SubjectQuestion" EntitySet="SubjectQuestions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubjectQuestion_SubjectAnswer" Association="Self.FK_SubjectQuestion_SubjectAnswer">
-            <End Role="SubjectAnswer" EntitySet="SubjectAnswers" />
-            <End Role="SubjectQuestion" EntitySet="SubjectQuestions" />
-          </AssociationSet>
-          <AssociationSet Name="Responsibility" Association="Self.Responsibility">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="Teacher" EntitySet="Teachers" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -588,110 +611,108 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="ExpITModel.Course">
               <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="rank" ColumnName="rank" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Examinations">
             <EntityTypeMapping TypeName="ExpITModel.Examination">
               <MappingFragment StoreEntitySet="Examination">
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
-                <ScalarProperty Name="PraticalScore" ColumnName="PraticalScore" />
-                <ScalarProperty Name="ThesisScore" ColumnName="ThesisScore" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="ThesisDoneTime" ColumnName="ThesisDoneTime" />
                 <ScalarProperty Name="PraticalDoneTime" ColumnName="PraticalDoneTime" />
+                <ScalarProperty Name="ThesisDoneTime" ColumnName="ThesisDoneTime" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ThesisScore" ColumnName="ThesisScore" />
+                <ScalarProperty Name="PraticalScore" ColumnName="PraticalScore" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Registrations">
             <EntityTypeMapping TypeName="ExpITModel.Registration">
               <MappingFragment StoreEntitySet="Registration">
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="ExpITModel.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="rank" ColumnName="rank" />
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ExpITModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="ExpITModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="information" ColumnName="information" />
-                <ScalarProperty Name="PraticalFile" ColumnName="PraticalFile" />
-                <ScalarProperty Name="PraticalText" ColumnName="PraticalText" />
-                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="NumberOfQuestion" ColumnName="NumberOfQuestion" />
                 <ScalarProperty Name="ThesisTime" ColumnName="ThesisTime" />
+                <ScalarProperty Name="NumberOfQuestion" ColumnName="NumberOfQuestion" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="PraticalText" ColumnName="PraticalText" />
+                <ScalarProperty Name="PraticalFile" ColumnName="PraticalFile" />
+                <ScalarProperty Name="information" ColumnName="information" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubjectAnswers">
             <EntityTypeMapping TypeName="ExpITModel.SubjectAnswer">
               <MappingFragment StoreEntitySet="SubjectAnswer">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="answer" ColumnName="answer" />
-                <ScalarProperty Name="result" ColumnName="result" />
                 <ScalarProperty Name="SubjectQuestionID" ColumnName="SubjectQuestionID" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubjectQuestions">
             <EntityTypeMapping TypeName="ExpITModel.SubjectQuestion">
               <MappingFragment StoreEntitySet="SubjectQuestion">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="ExpITModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Teachers">
-            <EntityTypeMapping TypeName="ExpITModel.Teacher">
-              <MappingFragment StoreEntitySet="Teacher">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ExpITModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="information" ColumnName="information" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="rank" ColumnName="rank" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="company" ColumnName="company" />
-                <ScalarProperty Name="information" ColumnName="information" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="Responsibility" TypeName="ExpITModel.Responsibility" StoreEntitySet="Responsibility">
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="TeacherID" />
+            </EndProperty>
             <EndProperty Name="Course">
               <ScalarProperty Name="ID" ColumnName="CourseID" />
-            </EndProperty>
-            <EndProperty Name="Teacher">
-              <ScalarProperty Name="ID" ColumnName="TeacherID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -38,28 +38,52 @@ namespace ExIT.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult RegisterAccount(string name, string username, string password, string address, string phone, 
             string email)
         {
-            db.Students.Add(new Student()
+            db.Users.Add(new User()
             {
                 username = username,
                 address = address,
                 email = email,
                 password=password,
+                roleId = 2,
                 rank=1
             });
             db.SaveChanges();
             Session["UserName"] = username;
-            Session["Role"] = "Student";
+            Session["Role"] = 2;
             return Json("true", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult CheckLogin(string username, string password)
+        {
+            var user = db.Users.Where(s => s.username.ToUpper() == username.ToUpper() && 
+                s.password==password).FirstOrDefault();
+            if (user != null)
+            {
+                Session["UserName"] = user.username;
+                Session["Role"] = user.roleId;
+                return Json("true", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("false", JsonRequestBehavior.AllowGet);
+            }
+            
+
         }
 
         [HttpPost]
         public Boolean CheckUserName(string username)
         {
-            var student = db.Students.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
+            var student = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
             if (student!=null)
             {
                 return false;

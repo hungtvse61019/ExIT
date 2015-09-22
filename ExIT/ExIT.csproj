@@ -147,7 +147,7 @@
     <Compile Include="Models\Registration.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Student.cs">
+    <Compile Include="Models\Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
@@ -162,7 +162,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Teacher.cs">
+    <Compile Include="Models\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,6 +210,7 @@
     <Content Include="Content\js\script.js" />
     <Content Include="Content\js\smartpaginator.js" />
     <Content Include="Content\Script\HomeCtrl.js" />
+    <Content Include="Content\Script\LoginCtrl.js" />
     <Content Include="Content\Script\RegisterCtrl.js" />
     <Content Include="Content\Script\toaster\index.js" />
     <Content Include="Content\Script\toaster\toaster.css" />
@@ -1062,6 +1063,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

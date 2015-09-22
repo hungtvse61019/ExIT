@@ -24,19 +24,7 @@ var register = ExItApp.controller("RegisterCtrl", function ($http, $scope, toast
         var username = document.getElementById("username").value;
         if (username == null || username.length == 0) {
             error += "<li>Vui lòng nhập Tên truy cập</li>";
-        } else {
-            $http({
-                method: "POST",
-                url: "/Home/CheckUserName",
-                data: {
-                    username: $("#username").val(),
-                }
-            }).success(function (data) {
-                if (data === "False") {
-                    error += "<li>Tên truy cập đã tồn tại</li>";
-                }
-            })
-        }
+        } 
         var password = document.getElementById("password").value;
         if (password == null || password.length == 0) {
             error += "<li>Vui lòng nhập Mật khẩu</li>";
@@ -51,27 +39,53 @@ var register = ExItApp.controller("RegisterCtrl", function ($http, $scope, toast
 
 
     $scope.register = function () {
+
+
+
         var error = $scope.validate();
+
+      
         if (error.length>0) {
             $scope.pop(error, "error");
         } else {
+
             $http({
                 method: "POST",
-                url: "/Home/RegisterAccount",
+                url: "/Home/CheckUserName",
                 data: {
-                    name: $("#name").val(),
                     username: $("#username").val(),
-                    password: $("#password").val(),
-                    address: $("#address").val(),
-                    phone: $("#phone").val(),
-                    email: $("#email").val(),
                 }
             }).success(function (data) {
-                if (data==="true") {
-                    $scope.pop("Dang ki thanh cong", "success");
-                } 
+                if (data === "False") {
+                    error += "<li>Tên truy cập đã tồn tại</li>";
+                    $scope.pop(error, "error");
+                } else {
+                    $http({
+                        method: "POST",
+                        url: "/Home/RegisterAccount",
+                        data: {
+                            name: $("#name").val(),
+                            username: $("#username").val(),
+                            password: $("#password").val(),
+                            address: $("#address").val(),
+                            phone: $("#phone").val(),
+                            email: $("#email").val(),
+                        }
+                    }).success(function (data) {
+                        if (data === "true") {
+                            setTimeout(function () {
+                                var links = "http://" + $(location).attr('host') + "/Home/Index";
+                                location.assign(links);
+                            }, 1000);
+                            $scope.pop("Đăng Ký Tài Khoản Thành Công!", "success");
+                        }
+                    })
+                }
             })
+
+           
         }
        
     }
+    
 })

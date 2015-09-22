@@ -51,6 +51,9 @@ namespace ExIT.Controllers
                 rank=1
             });
             db.SaveChanges();
+            Session["UserName"] = username;
+            Session["Role"] = "Student";
+            RedirectToAction("Index", "Home");
             return Json("true", JsonRequestBehavior.AllowGet);
         }
 

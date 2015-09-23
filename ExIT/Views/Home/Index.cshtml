@@ -1,161 +1,58 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<script src="~/Content/Script/IndexCtrl.js"></script>
 
-<div class="row">
+<div data-ng-controller="IndexCtrl">
+    <div id="top-courses-panel" class="panel panel-default">
+        <div class="panel-heading">
+            <img src="/Content/image/course-icon.png" class="panel-icon" />
+            <h2 class="panel-title">Khóa Học Xem Nhiều Nhất</h2>
+            <a href="/Home/AllCourses"><em><i class="fa fa-angle-double-left"></i> Tất cả khóa học <i class="fa fa-angle-double-right"></i></em></a>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="course-box" data-ng-repeat="course in courses">
+                    <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
+                    <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}"><img src="{{course.LinkImg}}" /></a>
+                    <div class="course-content">
+                        <h4 class="content-title">Nội dung khóa học</h4>
+                        <ul class="subjects">
+                            <li data-ng-repeat="sub in course.Subjects">
+                                <a href="">{{sub.SubjectName}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="panel-heading">
-        <img src="image/course-icon.png" class="panel-icon" />
-        <h2 class="panel-title">Khóa Học Xem Nhiều Nhất</h2>
-        <a href=""><em><i class="fa fa-angle-double-left"></i> Tất cả khóa học <i class="fa fa-angle-double-right"></i></em></a>
-    </div>
-    <div class="course-box">
-        <h3 class="course-title">Hướng Đối Tượng C#</h3>
-        <a class="course-image" href=""><img src="image/microsoft.png" /></a>
-        <div class="course-content">
-            <h4 class="content-title">Nội dung khóa học</h4>
-            <ul class="subjects">
-                <li>
-                    <a href="">Bài 1: Giới thiệu môn học</a>
-                </li>
-                <li>
-                    <a href="">Bài 2: Các khái niệm cơ bản</a>
-                </li>
-                <li>
-                    <a href="">Bài 3: Hệ điều hành</a>
-                </li>
-                <li>
-                    <a href="">Bài 4: Mạng máy tính</a>
-                </li>
-                <li>
-                    <a href="">Bài 5: Mạng</a>
-                </li>
-                <li>
-                    <a href="">Bài 6: Biễu diễn thông tin</a>
-                </li>
-                <li>
-                    <a href="">Bài 7: Các khái niệm cơ bản lập trình</a>
-                </li>
-                <li>
-                    <a href="">...</a>
-                </li>
-            </ul>
-        </div>
-        <a href="" class="more"><em>Xem thêm >></em></a>
-    </div>
-    <div class="course-box">
-        <h3 class="course-title">Hướng Đối Tượng C#</h3>
-        <a class="course-image" href=""><img src="image/microsoft.png" /></a>
-        <div class="course-content">
-            <h4 class="content-title">Nội dung khóa học</h4>
-            <ul class="subjects">
-                <li>
-                    <a href="">Bài 1: Giới thiệu môn học</a>
-                </li>
-                <li>
-                    <a href="">Bài 2: Các khái niệm cơ bản</a>
-                </li>
-                <li>
-                    <a href="">Bài 3: Hệ điều hành</a>
-                </li>
-                <li>
-                    <a href="">Bài 4: Mạng máy tính</a>
-                </li>
-                <li>
-                    <a href="">Bài 5: Mạng</a>
-                </li>
-                <li>
-                    <a href="">Bài 6: Biễu diễn thông tin</a>
-                </li>
-                <li>
-                    <a href="">Bài 7: Các khái niệm cơ bản lập trình</a>
-                </li>
-                <li>
-                    <a href="">...</a>
-                </li>
-            </ul>
-        </div>
-        <a href="" class="more"><em>Xem thêm >></em></a>
-    </div>
-    <div class="course-box">
-        <h3 class="course-title">Hướng Đối Tượng C#</h3>
-        <a class="course-image" href=""><img src="image/microsoft.png" /></a>
-        <div class="course-content">
-            <h4 class="content-title">Nội dung khóa học</h4>
-            <ul class="subjects">
-                <li>
-                    <a href="">Bài 1: Giới thiệu môn học</a>
-                </li>
-                <li>
-                    <a href="">Bài 2: Các khái niệm cơ bản</a>
-                </li>
-                <li>
-                    <a href="">Bài 3: Hệ điều hành</a>
-                </li>
-                <li>
-                    <a href="">Bài 4: Mạng máy tính</a>
-                </li>
-                <li>
-                    <a href="">Bài 5: Mạng</a>
-                </li>
-                <li>
-                    <a href="">Bài 6: Biễu diễn thông tin</a>
-                </li>
-                <li>
-                    <a href="">Bài 7: Các khái niệm cơ bản lập trình</a>
-                </li>
-                <li>
-                    <a href="">...</a>
-                </li>
-            </ul>
-        </div>
-        <a href="" class="more"><em>Xem thêm >></em></a>
-    </div>
+
     <div id=" top-teachers-panel" class="panel panel-default">
         <div class="panel-heading">
-            <img src="image/teachers-icon.png" class="panel-icon" />
+            <img src="/Content/image/teachers-icon.png" class="panel-icon" />
             <h3 class="panel-title">Giáo Viên Nổi Bật</h3>
         </div>
         <div class="panel-body">
-            <div class="teacher-box">
-                <img src="image/user.png" class="img-thumbnail" /></img>
-                <div class="teacher-info">
-                    <h2 class="teacher-name">Nguyễn Hữu Kỳ Long</h2>
-                    <p class="information">
-                        <strong>Tuổi:</strong> <em>39 tuổi</em><br />
-                        <strong>Công ty:</strong> <em>Global Cybersoft</em><br />
-                        Có kinh nghiệm trong nhiều lĩnh vực, có thể nói là hoàn hảo không có điểm nào chê được
-                        cả, nên cũng không biết điểm mạnh là gì với điểm yếu là gì nữa.
-                    </p>
+            <div data-ng-repeat="teacher in teachers">
+                <div class="teacher-box">
+                    <img src="{{teacher.imgUrl}}" class="img-thumbnail" /></img>
+                    <div class="teacher-info">
+                        <h2 class="teacher-name">{{teacher.name}}</h2>
+                        <p class="information">
+                            <strong>Tuổi:</strong> <em>39 tuổi</em><br />
+                            <strong>Công ty:</strong> <em>{{teacher.company}}</em><br />
+                            {{teacher.information}}
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="teacher-seperator"></div>
-            <div class="teacher-box">
-                <img src="image/user.png" class="img-thumbnail" /></img>
-                <div class="teacher-info">
-                    <h2 class="teacher-name">Nguyễn Hữu Kỳ Long</h2>
-                    <p class="information">
-                        <strong>Tuổi:</strong> <em>39 tuổi</em><br />
-                        <strong>Công ty:</strong> <em>Global Cybersoft</em><br />
-                        Có kinh nghiệm trong nhiều lĩnh vực, có thể nói là hoàn hảo không có điểm nào chê được
-                        cả, nên cũng không biết điểm mạnh là gì với điểm yếu là gì nữa.
-                    </p>
-                </div>
-            </div>
-            <div class="teacher-seperator"></div>
-            <div class="teacher-box">
-                <img src="image/user.png" class="img-thumbnail" /></img>
-                <div class="teacher-info">
-                    <h2 class="teacher-name">Nguyễn Hữu Kỳ Long</h2>
-                    <p class="information">
-                        <strong>Tuổi:</strong> <em>39 tuổi</em><br />
-                        <strong>Công ty:</strong> <em>Global Cybersoft</em><br />
-                        Có kinh nghiệm trong nhiều lĩnh vực, có thể nói là hoàn hảo không có điểm nào chê được
-                        cả, nên cũng không biết điểm mạnh là gì với điểm yếu là gì nữa.
-                    </p>
-                </div>
-            </div>
-            <div class="teacher-seperator"></div>
+            
         </div>
     </div>
 </div>
+
+
+

@@ -1,0 +1,43 @@
+﻿@model ExIT.Models.Course
+@{
+    ViewBag.Title = "EnrollCourse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/Script/EnrollCtrl.js"></script>
+<div id="course-registration-panel" class="panel panel-default" data-ng-controller="EnrollCtrl">
+    <div class="panel-heading">
+        <img src="/Content/image/courses-icon.png" class="panel-icon">
+        <h3 class="panel-title">
+            <ol class="breadcrumb">
+                <li><a href="/Home/Index">Trang Chủ</a></li>
+                <li class="active">@Model.name</li>
+            </ol>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <h2 class="course-registration-title">Đăng Ký Khóa Học</h2>
+        <div class="course-registration-seperator"></div>
+        <div class="course-registration-box">
+            <img src="@Model.imgUrl" class="img-thumbnail">
+            <div class="course-registration-info">
+                <h2 class="course-registration-name">@Model.name</h2>
+                <p class="information">
+                    <strong>Đối tượng:</strong> <em>học sinh trình độ @Model.rank</em><br>
+                    <strong>Số lượng bài giảng:</strong> <em>@Model.Subjects.Count()</em><br>
+                    <strong>Mô tả khóa học:</strong> @Model.overview
+                    <input type="hidden" id="courserank" value="@Model.rank" />
+                    <input type="hidden" id="courseid" value="@Model.ID" />
+
+                    @if (Session["Rank"] != null)
+                    {
+                        <input type="hidden" id="userrank" value="@Session["Rank"].ToString()" />
+
+                    }
+                </p>
+            </div>
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <a data-ng-click="regis()" class="btn btn-primary">Đăng Ký</a>
+        </div>
+    </div>
+</div>
+

@@ -7,6 +7,8 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="rank" Type="int" Nullable="false" />
+    <Property Name="imgUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="overview" Type="text" />
   </EntityType>
   <EntityType Name="Examination">
     <Key>
@@ -30,14 +32,6 @@
     <Property Name="CourseID" Type="int" Nullable="false" />
     <Property Name="status" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Responsibility">
-    <Key>
-      <PropertyRef Name="TeacherID" />
-      <PropertyRef Name="CourseID" />
-    </Key>
-    <Property Name="TeacherID" Type="int" Nullable="false" />
-    <Property Name="CourseID" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
@@ -58,6 +52,8 @@
     <Property Name="CourseID" Type="int" Nullable="false" />
     <Property Name="NumberOfQuestion" Type="int" Nullable="false" />
     <Property Name="ThesisTime" Type="int" Nullable="false" />
+    <Property Name="imgUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="overview" Type="text" />
   </EntityType>
   <EntityType Name="SubjectAnswer">
     <Key>
@@ -76,16 +72,6 @@
     <Property Name="question" Type="text" Nullable="false" />
     <Property Name="SubjectID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="ID" />
@@ -99,6 +85,8 @@
     <Property Name="roleId" Type="int" />
     <Property Name="company" Type="nvarchar" MaxLength="50" />
     <Property Name="information" Type="text" />
+    <Property Name="imgUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Examination_Student1">
     <End Role="User" Type="Self.User" Multiplicity="1">
@@ -153,32 +141,6 @@
       </Principal>
       <Dependent Role="Registration">
         <PropertyRef Name="StudentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Responsibility_Course">
-    <End Role="Course" Type="Self.Course" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Responsibility" Type="Self.Responsibility" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Responsibility">
-        <PropertyRef Name="CourseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Responsibility_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Responsibility" Type="Self.Responsibility" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Responsibility">
-        <PropertyRef Name="TeacherID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -252,12 +214,10 @@
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Examination" EntityType="Self.Examination" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Responsibility" EntityType="Self.Responsibility" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubjectAnswer" EntityType="Self.SubjectAnswer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubjectQuestion" EntityType="Self.SubjectQuestion" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Examination_Student1" Association="Self.FK_Examination_Student1">
       <End Role="User" EntitySet="User" />
@@ -274,14 +234,6 @@
     <AssociationSet Name="FK_Registration_Student" Association="Self.FK_Registration_Student">
       <End Role="User" EntitySet="User" />
       <End Role="Registration" EntitySet="Registration" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Responsibility_Course" Association="Self.FK_Responsibility_Course">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="Responsibility" EntitySet="Responsibility" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Responsibility_User" Association="Self.FK_Responsibility_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Responsibility" EntitySet="Responsibility" />
     </AssociationSet>
     <AssociationSet Name="FK_Subject_Course" Association="Self.FK_Subject_Course">
       <End Role="Course" EntitySet="Course" />

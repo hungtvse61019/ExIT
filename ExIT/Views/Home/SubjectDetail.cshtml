@@ -1,0 +1,51 @@
+﻿
+@model ExIT.Models.Subject
+@{
+    ViewBag.Title = "SubjectDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="subject-panel" class="panel panel-default">
+    <div class="panel-heading">
+        <img src="/Content/image/courses-icon.png" class="subject-icon">
+        <h3 class="panel-title">
+            <ol class="breadcrumb">
+                <li><a href="/Home/AllSubjects?courseid=@Model.CourseID">@Model.Course.name</a></li>
+                <li class="active">@Model.name</li>
+            </ol>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <h2 class="subject-title">Nội Dung Bài Giảng</h2>
+            <div class="subject-seperator"></div>
+            <div class="subject-box">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" width="560" height="315" src="@Model.information" frameborder="0" allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="row subject-row">
+            <h2 class="subject-title">Giáo Viên Phụ Trách</h2>
+            <div class="subject-seperator"></div>
+            <div class="subject-box">
+                <img src="@Model.User.imgUrl" class="img-thumbnail">
+                <div class="teacher-info">
+                    <h2 class="teacher-name">@Model.User.name</h2>
+                    <p class="information">
+                        <strong>Tuổi:</strong> <em>39 tuổi</em><br>
+                        <strong>Công ty:</strong> <em>@Model.User.company</em><br>
+                        @Model.User.information
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row subject-row">
+            <div class="subject-box subject-btn">
+                <a class="btn-green" href="#">Làm bài thực hành</a>
+                <a class="btn-red" href="#">Làm bài kiểm tra</a>
+            </div>
+        </div>
+    </div>
+</div>

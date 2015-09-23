@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ExIT.Models.Subject>
+@{
+    ViewBag.Title = "AllSubjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/Script/AllSubjectCtrl.js"></script>
+<div id="course-panel" class="panel panel-default" data-ng-controller="AllSubjectCtrl">
+    <div class="panel-heading">
+        <img src="/Content/image/courses-icon.png" class="panel-icon">
+        <h3 class="panel-title">
+            <ol class="breadcrumb">
+                <li><a href="/Home/Index">Trang Chủ</a></li>
+                <li class="active">Hướng Đối Tượng C#</li>
+            </ol>
+        </h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="course-box">
+                    <input type="hidden" name="courseid" value="" />
+                    <div class="thumbnail">
+                        <img src="@item.imgUrl" alt="...">
+                        <div class="caption">
+                            <a href="#"><h4>Bài 1: @item.name</h4></a>
+                            <p>@item.overview</p>
+                            <p>
+                                @if (@Session["IsCheck"] != null)
+                                {
+                                    if ((bool)@Session["IsCheck"] == true)
+                                    {
+                                        <a href="/Home/SubjectDetail?subjectid=@item.ID" class="btn btn-primary" role="button">Hoc</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="/Home/EnrollCourse?courseid=@item.CourseID" class="btn btn-primary" role="button">Tham gia</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a href="/Home/EnrollCourse?courseid=@item.CourseID" class="btn btn-primary" role="button">Tham gia</a>
+                                }
+                                
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+

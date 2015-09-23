@@ -46,6 +46,10 @@ public partial class Subject
 
     public int ThesisTime { get; set; }
 
+    public string imgUrl { get; set; }
+
+    public string overview { get; set; }
+
 
 
     public virtual Course Course { get; set; }

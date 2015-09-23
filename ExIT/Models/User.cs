@@ -27,8 +27,6 @@ public partial class User
 
         this.Subjects = new HashSet<Subject>();
 
-        this.Courses = new HashSet<Course>();
-
     }
 
 
@@ -50,6 +48,10 @@ public partial class User
 
     public string information { get; set; }
 
+    public string imgUrl { get; set; }
+
+    public string name { get; set; }
+
 
 
     public virtual ICollection<Examination> Examinations { get; set; }
@@ -59,8 +61,6 @@ public partial class User
     public virtual Role Role { get; set; }
 
     public virtual ICollection<Subject> Subjects { get; set; }
-
-    public virtual ICollection<Course> Courses { get; set; }
 
 }
 

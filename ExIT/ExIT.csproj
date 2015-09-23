@@ -126,6 +126,9 @@
     <Compile Include="Models\Course.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\CouseOfUserViewModel.cs" />
+    <Compile Include="Models\DTO\SubjectViewModel.cs" />
+    <Compile Include="Models\DTO\CourseViewModel.cs" />
     <Compile Include="Models\Examination.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -157,9 +160,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubjectQuestion.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -209,9 +209,14 @@
     <Content Include="Content\js\npm.js" />
     <Content Include="Content\js\script.js" />
     <Content Include="Content\js\smartpaginator.js" />
+    <Content Include="Content\Script\AllCoursesCtrl.js" />
+    <Content Include="Content\Script\AllSubjectCtrl.js" />
+    <Content Include="Content\Script\EnrollCtrl.js" />
     <Content Include="Content\Script\HomeCtrl.js" />
+    <Content Include="Content\Script\IndexCtrl.js" />
     <Content Include="Content\Script\LoginCtrl.js" />
     <Content Include="Content\Script\RegisterCtrl.js" />
+    <Content Include="Content\Script\SubjectDetailCtrl.js" />
     <Content Include="Content\Script\toaster\index.js" />
     <Content Include="Content\Script\toaster\toaster.css" />
     <Content Include="Content\Script\toaster\toaster.js" />
@@ -1064,6 +1069,10 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\AllCourses.cshtml" />
+    <Content Include="Views\Home\AllSubjects.cshtml" />
+    <Content Include="Views\Home\EnrollCourse.cshtml" />
+    <Content Include="Views\Home\SubjectDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

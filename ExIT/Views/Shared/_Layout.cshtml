@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="ExItApp">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>ExpIT - Trang Chủ</title>
+    <title>ExpIT </title>
     <!-- Bootstrap -->
     @*<link href="css/bootstrap.min.css" rel="stylesheet" />*@
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,18 +25,44 @@
 <body>
     <div id="page-wrap">
         <div id="top-page">
-            <a id="logo" href="trangchu.html">
-                <img src="image/second-logo.png" alt="ExpIT" />
+            <a id="logo" href="/Home/Index">
+                <img src="/Content/image/second-logo.png" alt="ExpIT" />
             </a>
             <div id="user-info">
-                <ul id="user-box">
-                    <li>
-                        <a href="/Home/Login">Đăng Nhập</a>
-                    </li>
-                    <li>
-                        <a href="/Home/Register">Đăng Ký</a>
-                    </li>
-                </ul>
+                @if (Session["Role"] != null)
+                {
+                    if (Session["Name"]!=null)
+                    {
+                        <ul id="user-box">
+                            <li>
+                                <a href="/Home/Logout">Đăng Xuất</a>
+                            </li>
+                            @if (Session["Role"].Equals(2))
+                            {
+                                <li>
+                                    <a href="/Home/Login">Trình độ @Session["Rank"].ToString()</a>
+                                </li>
+                            }
+                            <li>
+                                <a href="/Home/Login">Xin chào, @Session["Name"].ToString()</a>
+                            </li>
+                            
+                        </ul>
+                    }
+
+                }
+                else
+                {
+                    <ul id="user-box">
+                        <li>
+                            <a href="/Home/Login">Đăng Nhập</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Register">Đăng Ký</a>
+                        </li>
+                    </ul>
+                }
+               
                 <div id="search-box">
                     <p><em>Nhập vấn đề bạn muốn tìm. Ví dụ: dropbox, lập trình cơ bản...</em></p>
                     <div class="input-group">
@@ -52,10 +78,10 @@
         <div id="mainNav">
             <ul class="nav nav-pills nav-justified">
                 <li role="presentation">
-                    <a href="#">Trang Chủ</a>
+                    <a href="/Home/Index">Trang Chủ</a>
                 </li>
                 <li role="presentation">
-                    <a href="#">Khóa Học</a>
+                    <a href="/Home/AllCourses">Khóa Học</a>
                 </li>
                 <li role="presentation">
                     <a href="#">Hỏi Đáp</a>
@@ -70,21 +96,13 @@
         </div>
 
         <div id="banner">
-            <a href="trangchu.html"></a>
+            <a href="/Home/Index"></a>
         </div>
-
-        <div id="top-courses-panel" class="panel panel-default">
-            
-            <div class="panel-body">
-                @RenderBody()
-            </div>
-        </div>
-
-       
+            @RenderBody()
 
         <div id="footer">
             <a href="trangchu.html">
-                <img src="image/second-logo.png" />
+                <img src="/Content/image/second-logo.png" />
             </a>
             <div id="footer-info">
                 <p id="copyright">

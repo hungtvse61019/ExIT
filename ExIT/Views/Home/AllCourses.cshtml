@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "AllCourses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/Script/AllCoursesCtrl.js"></script>
+<div data-ng-controller="AllCourses">
+    <div id="top-courses-panel" class="panel panel-default">
+        <div class="panel-heading">
+            <img src="/Content/image/courses-icon.png" class="panel-icon" />
+            <h2 class="panel-title">Khóa Học</h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="course-box" data-ng-repeat="course in courses">
+                    <h3 class="course-title">{{course.CourseName}}</h3>
+                    <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}"><img src="{{course.LinkImg}}" /></a>
+                    <div class="course-content">
+                        <h4 class="content-title">Nội dung khóa học</h4>
+                        <ul class="subjects">
+                            <li data-ng-repeat="sub in course.Subjects">
+                                <a href="">{{sub.SubjectName}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="" class="more"><em>Xem thêm >></em></a>
+                </div>
+            </div>
+            <div class="row course-row">
+                <div id="smart-paginator">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

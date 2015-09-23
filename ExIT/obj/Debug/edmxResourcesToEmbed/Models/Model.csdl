@@ -8,7 +8,6 @@
     <EntitySet Name="Subjects" EntityType="ExpITModel.Subject" />
     <EntitySet Name="SubjectAnswers" EntityType="ExpITModel.SubjectAnswer" />
     <EntitySet Name="SubjectQuestions" EntityType="ExpITModel.SubjectQuestion" />
-    <EntitySet Name="sysdiagrams" EntityType="ExpITModel.sysdiagram" />
     <EntitySet Name="Users" EntityType="ExpITModel.User" />
     <AssociationSet Name="FK_Registration_Course" Association="ExpITModel.FK_Registration_Course">
       <End Role="Course" EntitySet="Courses" />
@@ -46,10 +45,6 @@
       <End Role="SubjectAnswer" EntitySet="SubjectAnswers" />
       <End Role="SubjectQuestion" EntitySet="SubjectQuestions" />
     </AssociationSet>
-    <AssociationSet Name="Responsibility" Association="ExpITModel.Responsibility">
-      <End Role="Course" EntitySet="Courses" />
-      <End Role="User" EntitySet="Users" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Course">
     <Key>
@@ -58,9 +53,10 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="rank" Type="Int32" Nullable="false" />
+    <Property Name="imgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="overview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Registrations" Relationship="ExpITModel.FK_Registration_Course" FromRole="Course" ToRole="Registration" />
     <NavigationProperty Name="Subjects" Relationship="ExpITModel.FK_Subject_Course" FromRole="Course" ToRole="Subject" />
-    <NavigationProperty Name="Users" Relationship="ExpITModel.Responsibility" FromRole="Course" ToRole="User" />
   </EntityType>
   <EntityType Name="Examination">
     <Key>
@@ -109,6 +105,8 @@
     <Property Name="CourseID" Type="Int32" Nullable="false" />
     <Property Name="NumberOfQuestion" Type="Int32" Nullable="false" />
     <Property Name="ThesisTime" Type="Int32" Nullable="false" />
+    <Property Name="imgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="overview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Course" Relationship="ExpITModel.FK_Subject_Course" FromRole="Subject" ToRole="Course" />
     <NavigationProperty Name="Examinations" Relationship="ExpITModel.FK_Examination_Subject" FromRole="Subject" ToRole="Examination" />
     <NavigationProperty Name="User" Relationship="ExpITModel.FK_Subject_User" FromRole="Subject" ToRole="User" />
@@ -134,16 +132,6 @@
     <NavigationProperty Name="Subject" Relationship="ExpITModel.FK_SubjectQuestion_Subject" FromRole="SubjectQuestion" ToRole="Subject" />
     <NavigationProperty Name="SubjectAnswer" Relationship="ExpITModel.FK_SubjectQuestion_SubjectAnswer" FromRole="SubjectQuestion" ToRole="SubjectAnswer" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="ID" />
@@ -157,11 +145,12 @@
     <Property Name="roleId" Type="Int32" />
     <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="information" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="imgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Examinations" Relationship="ExpITModel.FK_Examination_Student1" FromRole="User" ToRole="Examination" />
     <NavigationProperty Name="Registrations" Relationship="ExpITModel.FK_Registration_Student" FromRole="User" ToRole="Registration" />
     <NavigationProperty Name="Role" Relationship="ExpITModel.FK_User_Role" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Subjects" Relationship="ExpITModel.FK_Subject_User" FromRole="User" ToRole="Subject" />
-    <NavigationProperty Name="Courses" Relationship="ExpITModel.Responsibility" FromRole="User" ToRole="Course" />
   </EntityType>
   <Association Name="FK_Registration_Course">
     <End Type="ExpITModel.Course" Role="Course" Multiplicity="1">
@@ -284,9 +273,5 @@
         <PropertyRef Name="SubjectID" />
       </Dependent>
     </ReferentialConstraint>
-  </Association>
-  <Association Name="Responsibility">
-    <End Type="ExpITModel.Course" Role="Course" Multiplicity="*" />
-    <End Type="ExpITModel.User" Role="User" Multiplicity="*" />
   </Association>
 </Schema>

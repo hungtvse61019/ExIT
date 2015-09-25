@@ -1,0 +1,37 @@
+﻿@model ExIT.Models.Examination
+@{
+    ViewBag.Title = "ResultQuiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content">
+    <div id="content-title">
+        <h1>Trắc Nghiệm: @ViewBag.SubjectName</h1>
+    </div>
+    <div id="question-number">
+        <em>Kết quả kiểm tra</em>
+    </div>
+    <div id="test-content">
+        <div id="ressult-table" class="panel-table">
+            <ul class="header">
+                <li>Tổng số câu hỏi</li>
+                <li>Diem</li>
+                <li>Thời gian làm bài</li>
+                <li>Kết quả</li>
+            </ul>
+            <ul class="body">
+                <li>@ViewBag.NumberOfQuestion</li>
+                <li>@Model.ThesisScore</li>
+                <li>@ViewBag.Time</li>
+                <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;">@ViewBag.Result</li>
+            </ul>
+        </div>
+        <div id="final-result" style="color: green">Chúc mừng bạn, bạn đã vượt qua bài kiểm tra!</div>
+    </div>
+    <div id="test-control">
+        <div class="center-btn">
+            <a class="btn-green" href="/Home/Index">Trở Về</a>
+        </div>
+    </div>
+</div>
+

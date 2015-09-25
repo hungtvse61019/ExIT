@@ -42,10 +42,34 @@
             </div>
         </div>
         <div class="row subject-row">
-            <div class="subject-box subject-btn">
-                <a class="btn-green" href="#">Làm bài thực hành</a>
-                <a class="btn-red" href="#">Làm bài kiểm tra</a>
-            </div>
+            @if (Session["Rank"] != null)
+            {
+                if (ViewBag.Result!=null  )
+                {
+                    if (ViewBag.Result == "False")
+                    {
+                        <div class="subject-box subject-btn">
+                            <a class="btn-green" href="/Home/Practical?subjectid=@Model.ID">Làm bài thực hành</a>
+                            <a class="btn-red" href="/Home/Quiz?subjectid=@Model.ID">Làm bài kiểm tra</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="subject-box subject-btn">
+                            <a class="btn-green" href="/Home/FinalResult?subjectid=@Model.ID">Xem ket qua</a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="subject-box subject-btn">
+                        <a class="btn-green" href="/Home/Practical?subjectid=@Model.ID">Làm bài thực hành</a>
+                        <a class="btn-red" href="/Home/Quiz?subjectid=@Model.ID">Làm bài kiểm tra</a>
+                    </div>
+                }
+
+            }
+            
         </div>
     </div>
 </div>

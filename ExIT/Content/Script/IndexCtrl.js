@@ -27,6 +27,25 @@ var login = ExItApp.controller("IndexCtrl", function ($http, $scope, toaster) {
                 url: "/Home/LoadTeacherIndex"
             }).success(function (data) {
                 $scope.teachers = data;
+                var username = $("#username").val();
+                var role = $("#role").val();
+                if (username != null) {
+                    if (role == "1") {
+                        $scope.subjects = []
+                        $http({
+                            method: "POST",
+                            url: "/Home/LoadAllPracticals",
+                            data: {
+                                username: $("#username").val(),
+                            }
+                        }).success(function (data) {
+                            $scope.subjects = data;
+
+                        })
+                    }
+                    
+                }
+               
             })
         })
     }

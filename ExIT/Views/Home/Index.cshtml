@@ -2,31 +2,116 @@
     ViewBag.Title = "Home Page";
 }
 <script src="~/Content/Script/IndexCtrl.js"></script>
+<style>
+    .imgHolder {
+        position: relative;
+    }
 
+        .imgHolder span {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            border: 2px solid green;
+            background-color:red
+        }
+</style>
 <div data-ng-controller="IndexCtrl">
-    <div id="top-courses-panel" class="panel panel-default">
-        <div class="panel-heading">
-            <img src="/Content/image/course-icon.png" class="panel-icon" />
-            <h2 class="panel-title">Khóa Học Xem Nhiều Nhất</h2>
-            <a href="/Home/AllCourses"><em><i class="fa fa-angle-double-left"></i> Tất cả khóa học <i class="fa fa-angle-double-right"></i></em></a>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="course-box" data-ng-repeat="course in courses">
-                    <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
-                    <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}"><img src="{{course.LinkImg}}" /></a>
-                    <div class="course-content">
-                        <h4 class="content-title">Nội dung khóa học</h4>
-                        <ul class="subjects">
-                            <li data-ng-repeat="sub in course.Subjects">
-                                <a href="">{{sub.SubjectName}}</a>
-                            </li>
-                        </ul>
+    @if (Session["Role"] != null)
+    {
+        if (Session["Role"].ToString().Equals("2"))
+        {
+            <div id="top-courses-panel" class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="/Content/image/course-icon.png" class="panel-icon" />
+                    <h2 class="panel-title">Khóa Học Xem Nhiều Nhất</h2>
+                    <a href="/Home/AllCourses"><em><i class="fa fa-angle-double-left"></i> Tất cả khóa học <i class="fa fa-angle-double-right"></i></em></a>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="course-box" data-ng-repeat="course in courses">
+                            <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
+                            <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}">
+                                <div class="imgHolder">
+                                    <img src="{{course.LinkImg}}" />
+                                    <span ng-show="course.Learn==true">Dang Hoc</span>
+                                </div>
+                            </a>
+                            <div class="course-content">
+                                <h4 class="content-title">Nội dung khóa học</h4>
+                                <ul class="subjects">
+                                    <li data-ng-repeat="sub in course.Subjects">
+                                        <a href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">{{sub.SubjectName}}</a>
+                                        <span style="color:red">{{sub.Status}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        if (Session["Role"].ToString().Equals("1"))
+        {
+            <input type="hidden" id="username" value="@Session["Username"].ToString()" />
+            <input type="hidden" id="role" value="@Session["Role"].ToString()" />
+
+            <div id="course-registration-panel" class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="/Content/image/courses-icon.png" class="panel-icon">
+                    <h3 class="panel-title">
+                        <ol class="breadcrumb">
+                            <li class="active">Danh sách bài giảng</li>
+                        </ol>
+                    </h3>
+                </div>
+
+                <!-- Default panel contents -->
+                <div class="panel-body">
+                    <p style="font-size: 18px; font-family: BreeSerif">
+                        <strong>
+                            Hãy lựa chọn bài giảng để thầy cô có thể chấm điểm thực hành cho học sinh
+                        </strong>
+                    </p>
+                </div>
+
+                <!-- List group -->
+                <div class="list-group" data-ng-repeat="subject in subjects">
+                    <a href="/Home/MarkingPratical?subjectid={{subject.ID}}" class="list-group-item">
+                        <strong>Bài giảng: </strong>{{subject.name}}
+                    </a>
+                </div>
+
+
+            </div>
+        }
+    }
+    else
+    {
+        <div id="top-courses-panel" class="panel panel-default">
+            <div class="panel-heading">
+                <img src="/Content/image/course-icon.png" class="panel-icon" />
+                <h2 class="panel-title">Khóa Học Xem Nhiều Nhất</h2>
+                <a href="/Home/AllCourses"><em><i class="fa fa-angle-double-left"></i> Tất cả khóa học <i class="fa fa-angle-double-right"></i></em></a>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="course-box" data-ng-repeat="course in courses">
+                        <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
+                        <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}"><img src="{{course.LinkImg}}" /></a>
+                        <div class="course-content">
+                            <h4 class="content-title">Nội dung khóa học</h4>
+                            <ul class="subjects">
+                                <li data-ng-repeat="sub in course.Subjects">
+                                    <a href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">{{sub.SubjectName}}</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
+
 
 
     <div id=" top-teachers-panel" class="panel panel-default">
@@ -49,7 +134,7 @@
                 </div>
             </div>
             <div class="teacher-seperator"></div>
-            
+
         </div>
     </div>
 </div>

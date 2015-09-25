@@ -22,15 +22,17 @@ public partial class Examination
 
     public int SubjectID { get; set; }
 
-    public float PraticalScore { get; set; }
+    public Nullable<float> PraticalScore { get; set; }
 
-    public float ThesisScore { get; set; }
+    public Nullable<float> ThesisScore { get; set; }
 
     public int status { get; set; }
 
     public string ThesisDoneTime { get; set; }
 
     public string PraticalDoneTime { get; set; }
+
+    public string PracticalFile { get; set; }
 
 
 

@@ -17,11 +17,12 @@
     </Key>
     <Property Name="StudentID" Type="int" Nullable="false" />
     <Property Name="SubjectID" Type="int" Nullable="false" />
-    <Property Name="PraticalScore" Type="real" Nullable="false" />
-    <Property Name="ThesisScore" Type="real" Nullable="false" />
+    <Property Name="PraticalScore" Type="real" />
+    <Property Name="ThesisScore" Type="real" />
     <Property Name="status" Type="int" Nullable="false" />
-    <Property Name="ThesisDoneTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="PraticalDoneTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ThesisDoneTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="PraticalDoneTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="PracticalFile" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Registration">
     <Key>
@@ -47,7 +48,7 @@
     <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="information" Type="text" Nullable="false" />
     <Property Name="PraticalFile" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="PraticalText" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="PraticalText" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="TeacherID" Type="int" Nullable="false" />
     <Property Name="CourseID" Type="int" Nullable="false" />
     <Property Name="NumberOfQuestion" Type="int" Nullable="false" />
@@ -59,8 +60,8 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="answer" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="answer" Type="text" Nullable="false" />
     <Property Name="result" Type="bit" Nullable="false" />
     <Property Name="SubjectQuestionID" Type="int" Nullable="false" />
   </EntityType>

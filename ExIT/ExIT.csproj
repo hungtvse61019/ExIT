@@ -120,6 +120,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\DTO\QuestionViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -160,6 +161,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubjectQuestion.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -215,6 +219,8 @@
     <Content Include="Content\Script\HomeCtrl.js" />
     <Content Include="Content\Script\IndexCtrl.js" />
     <Content Include="Content\Script\LoginCtrl.js" />
+    <Content Include="Content\Script\MarkingPraticalCtrl.js" />
+    <Content Include="Content\Script\QuizCtrl.js" />
     <Content Include="Content\Script\RegisterCtrl.js" />
     <Content Include="Content\Script\SubjectDetailCtrl.js" />
     <Content Include="Content\Script\toaster\index.js" />
@@ -1039,6 +1045,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\Practical\tuesday%27speaking.docx" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -1073,9 +1080,15 @@
     <Content Include="Views\Home\AllSubjects.cshtml" />
     <Content Include="Views\Home\EnrollCourse.cshtml" />
     <Content Include="Views\Home\SubjectDetail.cshtml" />
+    <Content Include="Views\Home\Practical.cshtml" />
+    <Content Include="Views\Home\Quiz.cshtml" />
+    <Content Include="Views\Home\ResultQuiz.cshtml" />
+    <Content Include="Views\Home\MarkingPratical.cshtml" />
+    <Content Include="Views\Home\FinalResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

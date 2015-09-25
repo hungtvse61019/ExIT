@@ -1,0 +1,33 @@
+﻿@model ExIT.Models.Examination
+@{
+    ViewBag.Title = "FinalResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content">
+    <div id="content-title">
+        <h1>Trắc Nghiệm: Lập trình hướng đối tượng C#</h1>
+    </div>
+    <div id="question-number">
+        <em>Kết quả kiểm tra</em>
+    </div>
+    <div id="test-content">
+        <div id="ressult-table" class="panel-table">
+            <ul class="header">
+                <li>Bài trắc nghiệm</li>
+                <li>Bài thực hành</li>
+                <li>Kết quả</li>
+            </ul>
+            <ul class="body">
+                <li>@Model.ThesisScore</li>
+                <li>@Model.PraticalScore</li>
+                <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;"> @ViewBag.Status</li>
+            </ul>
+        </div>
+    </div>
+    <div id="test-control">
+        <div class="center-btn">
+            <a class="btn-green" href="/Home/SubjectDetail?subjectid=@Model.SubjectID">Trở Về</a>
+        </div>
+    </div>
+</div>

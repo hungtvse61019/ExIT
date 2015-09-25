@@ -15,6 +15,7 @@
     <EntitySetMapping Name="Examinations">
       <EntityTypeMapping TypeName="ExpITModel.Examination">
         <MappingFragment StoreEntitySet="Examination">
+          <ScalarProperty Name="PracticalFile" ColumnName="PracticalFile" />
           <ScalarProperty Name="PraticalDoneTime" ColumnName="PraticalDoneTime" />
           <ScalarProperty Name="ThesisDoneTime" ColumnName="ThesisDoneTime" />
           <ScalarProperty Name="status" ColumnName="status" />

@@ -1,0 +1,89 @@
+﻿@model ExIT.Models.Subject
+@{
+    ViewBag.Title = "Practical";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="subject-panel" class="panel panel-default">
+    <div class="panel-heading">
+        <img src="/Content/image/courses-icon.png" class="subject-icon">
+        <h3 class="panel-title">
+            <ol class="breadcrumb">
+                <li><a href="/Home/AllSubjects?courseid=@Model.Course.ID">@Model.Course.name</a></li>
+                <li class="active">@Model.name</li>
+            </ol>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <h2 class="subject-title">Nội Dung Bài Giảng</h2>
+            <div class="subject-seperator"></div>
+            <div class="subject-box">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" width="560" height="315" src="@Model.information" frameborder="0" allowfullscreen=""></iframe>
+                </div>
+
+            </div>
+        </div>
+        <div class="row subject-row">
+            <div class="subject-box">
+                <div class="files">
+                    <div class="practical-file">
+                        <img src="/Content/image/document-icon.png">
+                        <a href="@Model.PraticalFile">File bài tập thực hành</a>
+                    </div>
+                    <div class="practical-file">
+                        <img src="/Content/image/helper-icon.png">
+                        <a href="@Model.PraticalText">File note hướng dẫn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row subject-row">
+            <h2 class="subject-title">Giáo Viên Phụ Trách</h2>
+            <div class="subject-seperator"></div>
+            <div class="subject-box">
+                <img src="@Model.User.imgUrl" class="img-thumbnail">
+                <div class="teacher-info">
+                    <h2 class="teacher-name">@Model.User.name</h2>
+                    <p class="information">
+                        <strong>Tuổi:</strong> <em>39 tuổi</em><br>
+                        <strong>Công ty:</strong> <em>@Model.User.company</em><br>
+                        @Model.User.information
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row subject-row">
+            <div class="subject-box subject-btn">
+                @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" id="fileUpload" name="file" onchange="validation()" />
+                    <input type="hidden" name="subjectid" value="@Model.ID" />
+                    <input type="submit" name="Submit" id="Submit" value="Nop Bai Kiem Tra" />
+                }
+                <div id="note">*Lưu ý: Bài nộp phải thuộc định dạng file nén .zip hoặc .rar</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validation() {
+
+        var fname = (document.getElementById('fileUpload').value).substring(12);
+
+        var re = /(\.rar)$/i;
+
+        if (re.exec(fname)) {
+
+            document.getElementById('txtFileName').value = (document.getElementById('fileUpload').value).substring(12);
+
+        }
+
+        else
+
+            alert("file not supported!");
+
+    }
+</script>

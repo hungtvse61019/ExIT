@@ -65,11 +65,12 @@
     </Key>
     <Property Name="StudentID" Type="Int32" Nullable="false" />
     <Property Name="SubjectID" Type="Int32" Nullable="false" />
-    <Property Name="PraticalScore" Type="Single" Nullable="false" />
-    <Property Name="ThesisScore" Type="Single" Nullable="false" />
+    <Property Name="PraticalScore" Type="Single" />
+    <Property Name="ThesisScore" Type="Single" />
     <Property Name="status" Type="Int32" Nullable="false" />
-    <Property Name="ThesisDoneTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PraticalDoneTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ThesisDoneTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PraticalDoneTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PracticalFile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="User" Relationship="ExpITModel.FK_Examination_Student1" FromRole="Examination" ToRole="User" />
     <NavigationProperty Name="Subject" Relationship="ExpITModel.FK_Examination_Subject" FromRole="Examination" ToRole="Subject" />
   </EntityType>
@@ -100,7 +101,7 @@
     <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="information" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="PraticalFile" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="PraticalText" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="PraticalText" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="TeacherID" Type="Int32" Nullable="false" />
     <Property Name="CourseID" Type="Int32" Nullable="false" />
     <Property Name="NumberOfQuestion" Type="Int32" Nullable="false" />
@@ -116,8 +117,8 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="answer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="answer" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="result" Type="Boolean" Nullable="false" />
     <Property Name="SubjectQuestionID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="SubjectQuestions" Relationship="ExpITModel.FK_SubjectQuestion_SubjectAnswer" FromRole="SubjectAnswer" ToRole="SubjectQuestion" />

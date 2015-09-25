@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="20c0089362684d0e912d5b236d2b6cfc" Name="Diagram1">
-        <EntityTypeShape EntityType="ExpITModel.Course" Width="1.5" PointX="3" PointY="1.5" />
-        <EntityTypeShape EntityType="ExpITModel.Examination" Width="1.5" PointX="8.25" PointY="5.375" />
-        <EntityTypeShape EntityType="ExpITModel.Registration" Width="1.5" PointX="5.25" PointY="5.75" />
-        <EntityTypeShape EntityType="ExpITModel.Role" Width="1.5" PointX="0.75" PointY="5.875" />
-        <EntityTypeShape EntityType="ExpITModel.Subject" Width="1.5" PointX="5.25" PointY="0.75" />
-        <EntityTypeShape EntityType="ExpITModel.SubjectAnswer" Width="1.5" PointX="5.25" PointY="8.75" />
-        <EntityTypeShape EntityType="ExpITModel.SubjectQuestion" Width="1.5" PointX="7.5" PointY="1.75" />
-        <EntityTypeShape EntityType="ExpITModel.User" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="ExpITModel.Course" Width="1.5" PointX="6" PointY="2.375" />
+        <EntityTypeShape EntityType="ExpITModel.Examination" Width="1.5" PointX="10.5" PointY="5" />
+        <EntityTypeShape EntityType="ExpITModel.Registration" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="ExpITModel.Role" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ExpITModel.Subject" Width="1.5" PointX="8.25" PointY="4.5" />
+        <EntityTypeShape EntityType="ExpITModel.SubjectAnswer" Width="1.5" PointX="11.25" PointY="1.5" />
+        <EntityTypeShape EntityType="ExpITModel.SubjectQuestion" Width="1.5" PointX="13.5" PointY="5.5" />
+        <EntityTypeShape EntityType="ExpITModel.User" Width="1.5" PointX="3" PointY="4.5" />
         <AssociationConnector Association="ExpITModel.FK_Registration_Course" />
         <AssociationConnector Association="ExpITModel.FK_Subject_Course" />
         <AssociationConnector Association="ExpITModel.FK_Examination_Student1" />

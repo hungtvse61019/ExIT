@@ -1,8 +1,21 @@
-﻿@model IEnumerable<ExIT.Models.Subject>
+﻿@model IEnumerable<ExIT.Models.DTO.SubjectOfUser>
 @{
     ViewBag.Title = "AllSubjects";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .imgHolder {
+        position: relative;
+    }
+
+        .imgHolder span {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            border: 2px solid green;
+            background-color: red;
+        }
+</style>
 <script src="~/Content/Script/AllSubjectCtrl.js"></script>
 <div id="course-panel" class="panel panel-default" data-ng-controller="AllSubjectCtrl">
     <div class="panel-heading">
@@ -22,7 +35,11 @@
                 <div class="course-box">
                     <input type="hidden" name="courseid" value="" />
                     <div class="thumbnail">
-                        <img src="@item.imgUrl" alt="...">
+                        <div class="imgHolder">
+                            <img src="@item.imgUrl" alt="...">
+                            <span>@item.Status</span>
+                        </div>
+                       
                         <div class="caption">
                             <a href="#"><h4>Bài 1: @item.name</h4></a>
                             <p>@item.overview</p>

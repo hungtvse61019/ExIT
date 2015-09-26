@@ -30,8 +30,10 @@
     <div class="panel-body">
 
         <div class="row">
+            @{int i = 0;}
             @foreach (var item in Model)
             {
+               {i++;}
                 <div class="course-box">
                     <input type="hidden" name="courseid" value="" />
                     <div class="thumbnail">
@@ -41,14 +43,14 @@
                         </div>
                        
                         <div class="caption">
-                            <a href="#"><h4>Bài 1: @item.name</h4></a>
+                            <a href="#"><h4>Bài @i: @item.name</h4></a>
                             <p>@item.overview</p>
                             <p>
                                 @if (@Session["IsCheck"] != null)
                                 {
                                     if ((bool)@Session["IsCheck"] == true)
                                     {
-                                        <a href="/Home/SubjectDetail?subjectid=@item.ID" class="btn btn-primary" role="button">Hoc</a>
+                                        <a href="/Home/SubjectDetail?subjectid=@item.ID" class="btn btn-primary" role="button">Học</a>
 
                                     }
                                     else

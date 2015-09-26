@@ -21,12 +21,13 @@
             </ul>
             <ul class="body">
                 <li>@ViewBag.NumberOfQuestion</li>
-                <li>@Model.ThesisScore</li>
+                <li>@ViewBag.CorrectAns</li>
                 <li>@ViewBag.Time</li>
                 <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;">@ViewBag.Result</li>
             </ul>
         </div>
-        <div id="final-result" style="color: green">Chúc mừng bạn, bạn đã vượt qua bài kiểm tra!</div>
+
+        <div id="final-result" style="color: green">@ViewBag.Message</div>
     </div>
     <div id="test-control">
         <div class="center-btn">

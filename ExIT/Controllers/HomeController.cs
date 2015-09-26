@@ -203,9 +203,21 @@ namespace ExIT.Controllers
             {
                 ViewBag.Result = "Fail";
             }
+            int correctAns = (int)((examination.ThesisScore * numberQ) / 10.0);
             ViewBag.Time = examination.ThesisDoneTime;
             ViewBag.SubjectName = examination.Subject.name;
             ViewBag.NumberOfQuestion = numberQ;
+            ViewBag.CorrectAns = correctAns;
+            string message = "";
+            if (examination.ThesisScore > 5)
+            {
+                message = "Chúc mừng bạn, bạn đã vượt qua bài kiểm tra!";
+            }
+            else
+            {
+                message = "Rất tiếc, bạn đã không vượt qua bài kiểm tra!";
+            }
+            ViewBag.Message = message;
             return View(examination);
         }
         public ActionResult Register()
@@ -550,18 +562,65 @@ namespace ExIT.Controllers
         {
             List<CourseViewModel> listcourses = new List<CourseViewModel>();
             var courses = db.Courses.ToList();
+            int userid = -1;
+            if (Session["Username"] != null)
+            {
+
+                var username = Session["Username"].ToString();
+                var user = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
+                userid = user.ID;
+            }
             foreach (var item in courses)
             {
+                bool learn = false;
+                if (userid != -1)
+                {
+                    var registation = db.Registrations.Where(s => s.StudentID == userid && s.CourseID == item.ID).FirstOrDefault();
+
+                    if (registation != null)
+                    {
+                        learn = true;
+                    }
+                }
                 CourseViewModel viewmodel = new CourseViewModel();
                 viewmodel.CourseName = item.name;
+                viewmodel.Learn = learn;
                 viewmodel.LinkImg = item.imgUrl;
                 viewmodel.CourseId = item.ID;
                 var subject = db.Subjects.Where(s => s.CourseID == item.ID).Take(7).ToList();
                 viewmodel.Subjects = new List<SubjectViewModel>();
                 foreach (var sub in subject)
                 {
+                    bool leanred = false;
+                    string status = "";
+                    if (userid != -1)
+                    {
+                        var examination = db.Examinations.Where(s => s.StudentID == userid && s.SubjectID == sub.ID).FirstOrDefault();
+                        if (examination != null)
+                        {
+                            if (examination.ThesisScore != null && examination.PraticalScore != null)
+                            {
+                                if (examination.ThesisScore >= 5 && examination.PraticalScore >= 5)
+                                {
+                                    status = "Pass";
+                                }
+                                else
+                                {
+                                    status = "Fail";
+                                }
+
+                            }
+                            else
+                            {
+                                status = "Learning";
+                            }
+                        }
+                    }
                     SubjectViewModel subjectview = new SubjectViewModel();
                     subjectview.SubjectName = sub.name;
+                    subjectview.Learned = leanred;
+                    subjectview.Status = status;
+                    subjectview.SubjectId = sub.ID;
                     viewmodel.Subjects.Add(subjectview);
                 }
                 listcourses.Add(viewmodel);

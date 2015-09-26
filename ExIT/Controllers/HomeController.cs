@@ -490,7 +490,7 @@ namespace ExIT.Controllers
                 viewmodel.Learn = learn;
                 viewmodel.LinkImg = item.imgUrl;
                 viewmodel.CourseId = item.ID;
-                var subject = db.Subjects.Where(s => s.CourseID == item.ID).ToList();
+                var subject = db.Subjects.Where(s => s.CourseID == item.ID).Take(7).ToList();
                 viewmodel.Subjects = new List<SubjectViewModel>();
                 foreach (var sub in subject)
                 {

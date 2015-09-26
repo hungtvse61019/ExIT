@@ -12,6 +12,7 @@
         </div>
         <div class="panel-body">
             <div class="row">
+                @{int i = 0;}
                 <div class="course-box" data-ng-repeat="course in courses">
                     <h3 class="course-title">{{course.CourseName}}</h3>
                     <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}"><img src="{{course.LinkImg}}" /></a>
@@ -19,7 +20,8 @@
                         <h4 class="content-title">Nội dung khóa học</h4>
                         <ul class="subjects">
                             <li data-ng-repeat="sub in course.Subjects">
-                                <a href="">{{sub.SubjectName}}</a>
+                                @{i++;}
+                                <a href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài @i: {{sub.SubjectName}}</a>
                             </li>
                         </ul>
                     </div>

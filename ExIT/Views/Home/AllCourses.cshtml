@@ -21,7 +21,7 @@
                         <ul class="subjects">
                             <li data-ng-repeat="sub in course.Subjects">
                                 @{i++;}
-                                <a href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài @i: {{sub.SubjectName}}</a>
+                                <a href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài @i: {{sub.SubjectName}}</a>
                             </li>
                         </ul>
                     </div>

@@ -468,7 +468,7 @@ namespace ExIT.Controllers
             int userid = -1;
             if (Session["Username"] != null)
             {
-                int rank = Convert.ToInt32(Session["Rank"].ToString());
+                
                 var username = Session["Username"].ToString();
                 var user = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
                 userid = user.ID;

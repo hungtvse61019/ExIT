@@ -52,6 +52,8 @@ public partial class User
 
     public string name { get; set; }
 
+    public Nullable<int> age { get; set; }
+
 
 
     public virtual ICollection<Examination> Examinations { get; set; }

@@ -1,5 +1,4 @@
-﻿
-@model ExIT.Models.Subject
+﻿@model ExIT.Models.Subject
 @{
     ViewBag.Title = "SubjectDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,7 +33,7 @@
                 <div class="teacher-info">
                     <h2 class="teacher-name">@Model.User.name</h2>
                     <p class="information">
-                        <strong>Tuổi:</strong> <em>39 tuổi</em><br>
+                        <strong>Tuổi:</strong> <em>@Model.User.age</em><br>
                         <strong>Công ty:</strong> <em>@Model.User.company</em><br>
                         @Model.User.information
                     </p>
@@ -42,34 +41,32 @@
             </div>
         </div>
         <div class="row subject-row">
-            @if (Session["Rank"] != null)
-            {
-                if (ViewBag.Result!=null  )
+            <div class="subject-box subject-btn">
+                @if (Session["Rank"] != null)
                 {
-                    if (ViewBag.Result == "False")
+                    if (ViewBag.Result != null)
                     {
-                        <div class="subject-box subject-btn">
-                            <a class="btn-green" href="/Home/Practical?subjectid=@Model.ID">Làm bài thực hành</a>
+                        if (ViewBag.Result == "False")
+                        {
+                            <a class="btn-red" href="/Home/Retake?subjectid=@Model.ID">Học lại</a>
+                        }
+                        if (ViewBag.Result == "Thesis")
+                        {
                             <a class="btn-red" href="/Home/Quiz?subjectid=@Model.ID">Làm bài kiểm tra</a>
-                        </div>
+                        }
+                        if (ViewBag.Result == "Practical")
+                        {
+                            <a class="btn-green" href="/Home/Practical?subjectid=@Model.ID">Làm bài thực hành</a>
+                        }
                     }
                     else
                     {
-                        <div class="subject-box subject-btn">
-                            <a class="btn-green" href="/Home/FinalResult?subjectid=@Model.ID">Xem ket qua</a>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <div class="subject-box subject-btn">
                         <a class="btn-green" href="/Home/Practical?subjectid=@Model.ID">Làm bài thực hành</a>
                         <a class="btn-red" href="/Home/Quiz?subjectid=@Model.ID">Làm bài kiểm tra</a>
-                    </div>
+                    }
+                    <a class="btn-green" href="/Home/FinalResult?subjectid=@Model.ID">Xem Kết Quả</a>
                 }
-
-            }
-            
+            </div>
         </div>
     </div>
 </div>

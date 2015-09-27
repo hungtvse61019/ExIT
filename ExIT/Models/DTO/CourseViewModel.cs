@@ -11,6 +11,7 @@ namespace ExIT.Models.DTO
         public bool Learn { get; set; }
         public string LinkImg { get; set; }
         public int CourseId { get; set; }
+        public int Rank { get; set; }
         public List<SubjectViewModel> Subjects { get; set; }
     }
 }

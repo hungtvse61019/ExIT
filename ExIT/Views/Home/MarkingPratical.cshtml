@@ -38,24 +38,30 @@
             <tbody>
                 @{int i = 0;}
                 @foreach (var exam in Model)
+                {
+                    if (@exam.PraticalScore == null)
                     {
-                  
                         <tr>
                             @{i++;}
                             <th scope="row">@i</th>
                             <td>@exam.User.name</td>
                             <td><a href="@exam.PracticalFile">Download</a></td>
-                            <td><input id="@exam.SubjectID-@exam.StudentID"  style="width: 100px;" type="text" class="form-control" placeholder="Điểm"
+                            <td>
+                                <input id="@exam.SubjectID-@exam.StudentID" style="width: 100px;" value="@exam.PraticalScore" type="text" class="form-control" placeholder="Điểm"
                                        onkeydown="return ( event.ctrlKey || event.altKey
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                     || (95<event.keyCode && event.keyCode<106)
                     || (event.keyCode==8) || (event.keyCode==9)
                     || (event.keyCode>34 && event.keyCode<40)
-                    || (event.keyCode==46) )">@exam.PraticalScore</td>
+                    || (event.keyCode==46) )">
+                            </td>
                             <td>
-                                <button data-ng-click="marking(@exam.StudentID, @exam.SubjectID)">Save</button></td>
+                                <button data-ng-click="marking(@exam.StudentID, @exam.SubjectID)">Save</button>
+                            </td>
                         </tr>
-    }
+                    }
+
+                }
 
             </tbody>
         </table>

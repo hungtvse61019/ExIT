@@ -39,7 +39,8 @@
                         <ul class="subjects">
                             <li data-ng-repeat="sub in course.Subjects">
                                 @{i++;}
-                                <a href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài @i: {{sub.SubjectName}}</a>
+                                <a data-ng-if="course.Rank===@Session["Rank"].ToString()" href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài @i: {{sub.SubjectName}}</a>
+                                <a data-ng-if="course.Rank!==@Session["Rank"].ToString()" href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài @i: {{sub.SubjectName}}</a>
                                 <span style="color:red">{{sub.Status}}</span>
                             </li>
                         </ul>

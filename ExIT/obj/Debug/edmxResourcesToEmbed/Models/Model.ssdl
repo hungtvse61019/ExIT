@@ -19,7 +19,7 @@
     <Property Name="SubjectID" Type="int" Nullable="false" />
     <Property Name="PraticalScore" Type="real" />
     <Property Name="ThesisScore" Type="real" />
-    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="status" Type="int" />
     <Property Name="ThesisDoneTime" Type="nvarchar" MaxLength="50" />
     <Property Name="PraticalDoneTime" Type="nvarchar" MaxLength="50" />
     <Property Name="PracticalFile" Type="nvarchar" MaxLength="50" />
@@ -88,6 +88,7 @@
     <Property Name="information" Type="text" />
     <Property Name="imgUrl" Type="nvarchar" MaxLength="50" />
     <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="int" />
   </EntityType>
   <Association Name="FK_Examination_Student1">
     <End Role="User" Type="Self.User" Multiplicity="1">

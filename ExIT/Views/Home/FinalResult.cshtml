@@ -19,15 +19,39 @@
                 <li>Kết quả</li>
             </ul>
             <ul class="body">
-                <li>@Model.ThesisScore</li>
-                <li>@Model.PraticalScore</li>
+                @if (@Model != null)
+                {
+                    if (@Model.ThesisScore != null)
+                    {
+                        <li>@Model.ThesisScore</li>
+                    }
+                    else
+                    {
+                        <li>Chưa làm</li>
+                    }
+                    if (@Model.PraticalScore != null)
+                    {
+                        <li>@Model.PraticalScore</li>
+                    }
+                    else
+                    {
+                        <li>Chưa làm</li>
+                    }
+                }
+                else
+                {
+                    <li>Chưa làm</li>
+    <li>Chưa làm</li>
+                }
+                
+                
                 <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;"> @ViewBag.Status</li>
             </ul>
         </div>
     </div>
     <div id="test-control">
         <div class="center-btn">
-            <a class="btn-green" href="/Home/SubjectDetail?subjectid=@Model.SubjectID">Trở Về</a>
+            <a class="btn-green" href="/Home/SubjectDetail?subjectid=@ViewBag.Subjectid">Trở Về</a>
         </div>
     </div>
 </div>

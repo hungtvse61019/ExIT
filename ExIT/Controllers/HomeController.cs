@@ -40,7 +40,7 @@ namespace ExIT.Controllers
             var username = Session["Username"].ToString();
             var user = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
             var exam = db.Examinations.Where(s => s.SubjectID == subjectid && s.StudentID == user.ID).FirstOrDefault();
-            string status = "Chua Hoan Thanh Het";
+            string status = "Chưa hoàn thành";
             if (exam != null)
             {
                 if (exam.PraticalScore != null && exam.ThesisScore != null)
@@ -57,6 +57,7 @@ namespace ExIT.Controllers
 
             }
             ViewBag.Status = status;
+            ViewBag.Subjectid = subjectid;
             return View(exam);
         }
 
@@ -97,6 +98,10 @@ namespace ExIT.Controllers
                     if (examination.PraticalScore > 5 && ((float)(Convert.ToDouble(count / numberQ)) * 10) > 5)
                     {
                         examination.status = 1;
+                    }
+                    if (examination.PraticalScore < 5 && ((float)(Convert.ToDouble(count / numberQ)) * 10) < 5)
+                    {
+                        examination.status = -1;
                     }
                 }
                 examination.ThesisDoneTime = remain;
@@ -161,11 +166,11 @@ namespace ExIT.Controllers
                 if (examination.ThesisScore > 5 && mark > 5)
                 {
                     examination.status = 1;
-                }
-                else
+                } if (examination.ThesisScore < 5 && mark < 5)
                 {
-                    examination.status = 0;
+                    examination.status = -1;
                 }
+
                 examination.PraticalScore = mark;
             }
             else
@@ -301,13 +306,13 @@ namespace ExIT.Controllers
                         StudentID = user.ID,
                         status = 0,
                         PracticalFile = "/Content/Upload" + "/" + newname,
-                        PraticalDoneTime=DateTime.Now.ToString("dd/MM/yyyy HH:mm:Ss")
+                        PraticalDoneTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:Ss")
                     });
 
                 }
                 db.SaveChanges();
             }
-            return RedirectToAction("Practical", new { subjectid = cid });
+            return RedirectToAction("SubjectDetail", new { subjectid = cid });
         }
 
         public ActionResult Login()
@@ -346,15 +351,47 @@ namespace ExIT.Controllers
                     if (examnination.status == 1)
                     {
                         ViewBag.Result = "PASS";
+
                     }
-                    else
+                    else if (examnination.status == -1)
                     {
                         ViewBag.Result = "False";
                     }
+                    else if (examnination.ThesisScore == null)
+                    {
+                        ViewBag.Result = "Thesis";
+                    }
+                    else if (examnination.PracticalFile == null)
+                    {
+                        ViewBag.Result = "Practical";
+                    }
+                    else if (examnination.ThesisScore != null && examnination.PracticalFile != null)
+                    {
+                        ViewBag.Result = "";
+                    }
+
                 }
             }
 
             return View(subject);
+        }
+
+
+
+        public ActionResult Retake(int subjectid)
+        {
+            if (Session["Username"] != null)
+            {
+                var username = Session["Username"].ToString();
+                var user = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
+                var examnination = db.Examinations.Where(s => s.StudentID == user.ID && s.SubjectID == subjectid).FirstOrDefault();
+                if (examnination != null)
+                {
+                    db.Examinations.Remove(examnination);
+                }
+            }
+            db.SaveChanges();
+            return RedirectToAction("SubjectDetail", new { subjectid = subjectid });
         }
         public ActionResult EnrollCourse(int courseid)
         {
@@ -393,7 +430,7 @@ namespace ExIT.Controllers
                     var exam = db.Examinations.Where(s => s.StudentID == userid && s.SubjectID == sub.ID).FirstOrDefault();
                     if (exam != null)
                     {
-                        if (exam.ThesisScore!=null&&exam.PraticalScore!=null)
+                        if (exam.ThesisScore != null && exam.PraticalScore != null)
                         {
                             if (exam.ThesisScore >= 5 && exam.PraticalScore >= 5)
                             {
@@ -409,7 +446,7 @@ namespace ExIT.Controllers
                         {
                             status = "LEARNING";
                         }
-                       
+
 
 
                     }
@@ -420,7 +457,8 @@ namespace ExIT.Controllers
                     CourseID = sub.CourseID,
                     imgUrl = sub.imgUrl,
                     name = sub.name,
-                    Status = status
+                    Status = status,
+                    overview = sub.overview
                 });
             }
 
@@ -480,7 +518,7 @@ namespace ExIT.Controllers
             int userid = -1;
             if (Session["Username"] != null)
             {
-                
+
                 var username = Session["Username"].ToString();
                 var user = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
                 userid = user.ID;
@@ -502,6 +540,7 @@ namespace ExIT.Controllers
                 viewmodel.Learn = learn;
                 viewmodel.LinkImg = item.imgUrl;
                 viewmodel.CourseId = item.ID;
+                viewmodel.Rank = item.rank;
                 var subject = db.Subjects.Where(s => s.CourseID == item.ID).Take(7).ToList();
                 viewmodel.Subjects = new List<SubjectViewModel>();
                 foreach (var sub in subject)
@@ -551,7 +590,8 @@ namespace ExIT.Controllers
                 s.name,
                 s.imgUrl,
                 s.company,
-                s.information
+                s.information,
+                s.age
             });
 
             return Json(users, JsonRequestBehavior.AllowGet);
@@ -587,6 +627,7 @@ namespace ExIT.Controllers
                 viewmodel.Learn = learn;
                 viewmodel.LinkImg = item.imgUrl;
                 viewmodel.CourseId = item.ID;
+                viewmodel.Rank = item.rank;
                 var subject = db.Subjects.Where(s => s.CourseID == item.ID).Take(7).ToList();
                 viewmodel.Subjects = new List<SubjectViewModel>();
                 foreach (var sub in subject)
@@ -686,13 +727,24 @@ namespace ExIT.Controllers
         [HttpPost]
         public ActionResult LoadAllPracticals(string username)
         {
+            List<PracticalViewModels> PracticalViewModels = new List<Models.DTO.PracticalViewModels>();
             var teacher = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
             var subjects = db.Subjects.Where(s => s.TeacherID == teacher.ID).ToList().Select(s => new
             {
                 s.name,
                 s.ID
             });
-            return Json(subjects, JsonRequestBehavior.AllowGet);
+            foreach (var item in subjects)
+            {
+                PracticalViewModels Practical = new Models.DTO.PracticalViewModels();
+                var exams = db.Examinations.Where(s => s.SubjectID == item.ID && s.PraticalScore != null).ToList();
+                int count = exams.Count();
+                Practical.id = item.ID;
+                Practical.name = item.name;
+                Practical.practicals = count;
+                PracticalViewModels.Add(Practical);
+            }
+            return Json(PracticalViewModels, JsonRequestBehavior.AllowGet);
         }
 
         //[HttpPost]

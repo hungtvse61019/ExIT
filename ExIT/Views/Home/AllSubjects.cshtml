@@ -33,7 +33,7 @@
             @{int i = 0;}
             @foreach (var item in Model)
             {
-               {i++;}
+                { i++; }
                 <div class="course-box">
                     <input type="hidden" name="courseid" value="" />
                     <div class="thumbnail">
@@ -41,30 +41,41 @@
                             <img src="@item.imgUrl" alt="...">
                             <span>@item.Status</span>
                         </div>
-                       
-                        <div class="caption">
-                            <a href="#"><h4>Bài @i: @item.name</h4></a>
-                            <p>@item.overview</p>
-                            <p>
-                                @if (@Session["IsCheck"] != null)
-                                {
-                                    if ((bool)@Session["IsCheck"] == true)
-                                    {
-                                        <a href="/Home/SubjectDetail?subjectid=@item.ID" class="btn btn-primary" role="button">Học</a>
 
-                                    }
-                                    else
-                                    {
-                                        <a href="/Home/EnrollCourse?courseid=@item.CourseID" class="btn btn-primary" role="button">Tham gia</a>
-                                    }
+                        <div class="caption">
+
+                            
+
+                            @if (@Session["IsCheck"] != null)
+                            {
+                                if ((bool)@Session["IsCheck"] == true)
+                                {
+                                    <a href="/Home/SubjectDetail?subjectid=@item.ID"><h4>Bài @i: @item.name</h4></a>
+                                    <p>@item.overview</p>
+                                    <p>
+                                        <a href="/Home/SubjectDetail?subjectid=@item.ID" class="btn btn-primary" role="button">Học</a>
+                                    </p>
                                 }
                                 else
                                 {
-                                    <a href="/Home/EnrollCourse?courseid=@item.CourseID" class="btn btn-primary" role="button">Tham gia</a>
+                                    <a href="/Home/EnrollCourse?courseid=@item.CourseID"><h4>Bài @i: @item.name</h4></a>
+                                    <p>@item.overview</p>
+                                    <p>
+                                        <a href="/Home/EnrollCourse?courseid=@item.CourseID" class="btn btn-primary" role="button">Tham gia</a>
+                                    </p>
                                 }
-                                
+                            }
+                            else
+                            {
+                                <a href="/Home/EnrollCourse?courseid=@item.CourseID"><h4>Bài @i: @item.name</h4></a>
+                                <p>@item.overview</p>
+                                <p>
+                                    <a href="/Home/EnrollCourse?courseid=@item.CourseID" class="btn btn-primary" role="button">Tham gia</a>
+                                </p>
+                            }
 
-                            </p>
+
+
                         </div>
                     </div>
                 </div>

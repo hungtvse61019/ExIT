@@ -67,7 +67,7 @@
     <Property Name="SubjectID" Type="Int32" Nullable="false" />
     <Property Name="PraticalScore" Type="Single" />
     <Property Name="ThesisScore" Type="Single" />
-    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" />
     <Property Name="ThesisDoneTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PraticalDoneTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PracticalFile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -148,6 +148,7 @@
     <Property Name="information" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="imgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="age" Type="Int32" />
     <NavigationProperty Name="Examinations" Relationship="ExpITModel.FK_Examination_Student1" FromRole="User" ToRole="Examination" />
     <NavigationProperty Name="Registrations" Relationship="ExpITModel.FK_Registration_Student" FromRole="User" ToRole="Registration" />
     <NavigationProperty Name="Role" Relationship="ExpITModel.FK_User_Role" FromRole="User" ToRole="Role" />

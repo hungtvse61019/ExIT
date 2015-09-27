@@ -26,7 +26,7 @@ public partial class Examination
 
     public Nullable<float> ThesisScore { get; set; }
 
-    public int status { get; set; }
+    public Nullable<int> status { get; set; }
 
     public string ThesisDoneTime { get; set; }
 

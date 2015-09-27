@@ -82,6 +82,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="ExpITModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="age" ColumnName="age" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="imgUrl" ColumnName="imgUrl" />
           <ScalarProperty Name="information" ColumnName="information" />

@@ -1,0 +1,74 @@
+﻿@model ExIT.Models.Subject
+@{
+    ViewBag.Title = "PrepareTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="subject-panel" class="panel panel-default">
+    <div class="panel-heading">
+        <img src="/Content/image/courses-icon.png" class="subject-icon">
+        <h3 class="panel-title">
+            <ol class="breadcrumb">
+                <li><a href="/Home/AllSubjects?courseid=@Model.CourseID">@Model.Course.name</a></li>
+                <li class="active">@Model.name</li>
+            </ol>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <h2 class="subject-title">Nội Dung Bài Kiểm Tra</h2>
+            <div class="subject-seperator"></div>
+            <div class="subject-box">
+                <p>
+                </p><table class="table table-striped test-table">
+                    <tbody>
+                        <tr>
+                            <th>Bài</th>
+                            <td>@Model.name</td>
+                        </tr>
+                        <tr>
+                            <th>Thời gian</th>
+                            <td>15 phút</td>
+                        </tr>
+                        <tr>
+                            <th>Tổng số câu hỏi</th>
+                            <td>@Model.NumberOfQuestion</td>
+                        </tr>
+                        @{int i = 0;}
+                        @{i = Model.NumberOfQuestion / 2;}
+                        <tr>
+                            <th>Yêu cầu cần đạt</th>
+                            <td>Đạt @i câu / @Model.NumberOfQuestion câu</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 							<strong>Bài 1:</strong> <em>Làm quen với visual studio 2015</em><br/>
+                    <strong>Thời gian:</strong> <em>15 phút</em><br/>
+                    <strong>Tổng số câu hỏi:</strong> <em>20 câu</em><br/>
+                <strong>Yêu cầu cần đạt:</strong> <em>16 câu / 20 câu</em><br/> -->
+                <p></p>
+            </div>
+        </div>
+        <div class="row subject-row">
+            <h2 class="subject-title">Giáo Viên Phụ Trách</h2>
+            <div class="subject-seperator"></div>
+            <div class="subject-box">
+                <img src="@Model.User.imgUrl" class="img-thumbnail">
+                <div class="teacher-info">
+                    <h2 class="teacher-name">@Model.User.name</h2>
+                    <p class="information">
+                        <strong>Tuổi:</strong> <em>@Model.User.age</em><br>
+                        <strong>Công ty:</strong> <em>@Model.User.company</em><br>
+                        @Model.User.information
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row subject-row">
+            <div class="subject-box test-btn">
+                <a class="btn-green" href="/Home/Quiz?subjectid=@Model.ID">Bắt đầu</a>
+            </div>
+        </div>
+    </div>
+</div>
+

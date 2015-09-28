@@ -223,7 +223,7 @@ namespace ExIT.Controllers
             ViewBag.NumberOfQuestion = examination.Subject.NumberOfQuestion;
             ViewBag.CorrectAns = correctAns;
             string message = "";
-            if (examination.ThesisScore > 5)
+            if (examination.ThesisScore >= 5)
             {
                 message = "Chúc mừng bạn, bạn đã vượt qua bài kiểm tra!";
             }
@@ -399,7 +399,11 @@ namespace ExIT.Controllers
             return View(subject);
         }
 
-
+        public ActionResult PrepareTest(int subjectid)
+        {
+            var subject = db.Subjects.Where(s => s.ID == subjectid).FirstOrDefault();
+            return View(subject);
+        }
 
         public ActionResult Retake(int subjectid)
         {

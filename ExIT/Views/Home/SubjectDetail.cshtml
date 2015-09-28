@@ -52,7 +52,7 @@
                         }
                         if (ViewBag.Result == "Thesis")
                         {
-                            <a class="btn-red" href="/Home/Quiz?subjectid=@Model.ID">Làm bài kiểm tra</a>
+                            <a class="btn-red" href="/Home/PrepareTest?subjectid=@Model.ID">Làm bài kiểm tra</a>
                         }
                         if (ViewBag.Result == "Practical")
                         {
@@ -62,7 +62,7 @@
                     else
                     {
                         <a class="btn-green" href="/Home/Practical?subjectid=@Model.ID">Làm bài thực hành</a>
-                        <a class="btn-red" href="/Home/Quiz?subjectid=@Model.ID">Làm bài kiểm tra</a>
+                        <a class="btn-red" href="/Home/PrepareTest?subjectid=@Model.ID">Làm bài kiểm tra</a>
                     }
                     <a class="btn-green" href="/Home/FinalResult?subjectid=@Model.ID">Xem Kết Quả</a>
                 }

@@ -1083,6 +1083,7 @@
     <Content Include="Views\Home\ResultQuiz.cshtml" />
     <Content Include="Views\Home\MarkingPratical.cshtml" />
     <Content Include="Views\Home\FinalResult.cshtml" />
+    <Content Include="Views\Home\PrepareTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,7 +31,7 @@
     </Key>
     <Property Name="StudentID" Type="int" Nullable="false" />
     <Property Name="CourseID" Type="int" Nullable="false" />
-    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>

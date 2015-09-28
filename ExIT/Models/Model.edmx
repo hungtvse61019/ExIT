@@ -36,7 +36,7 @@
           </Key>
           <Property Name="StudentID" Type="int" Nullable="false" />
           <Property Name="CourseID" Type="int" Nullable="false" />
-          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -348,7 +348,7 @@
           </Key>
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Course" Relationship="ExpITModel.FK_Registration_Course" FromRole="Registration" ToRole="Course" />
           <NavigationProperty Name="User" Relationship="ExpITModel.FK_Registration_Student" FromRole="Registration" ToRole="User" />
         </EntityType>

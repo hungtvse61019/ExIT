@@ -96,9 +96,9 @@ namespace ExIT.Controllers
                 examination.ThesisScore = (float)(Convert.ToDouble(count / examination.Subject.NumberOfQuestion)) * 10;
                 if (examination.PraticalScore != null)
                 {
-                    if (examination.ThesisScore != null && examination.PraticalScore != null)
+                    if (examination.PraticalScore != null)
                     {
-                        if (examination.PraticalScore > 5 && ((float)(Convert.ToDouble(count / examination.Subject.NumberOfQuestion)) * 10) > 5)
+                        if (examination.PraticalScore >= 5 && ((float)(Convert.ToDouble(count / examination.Subject.NumberOfQuestion)) * 10) >= 5)
                         {
                             examination.status = 1;
                         }
@@ -127,6 +127,8 @@ namespace ExIT.Controllers
             if (pass == true)
             {
                 user.rank = user.rank + 1;
+                Session["Rank"] = null;
+                Session["Rank"] = user.rank + 1;
             }
             db.SaveChanges();
             return Json("true", JsonRequestBehavior.AllowGet);
@@ -158,6 +160,9 @@ namespace ExIT.Controllers
             {
                 return false;
             }
+            var regis = db.Registrations.Where(s => s.StudentID == studentid && s.CourseID == course.ID).FirstOrDefault();
+            regis.status = 1;
+            db.SaveChanges();
             return true;
         }
 
@@ -168,9 +173,9 @@ namespace ExIT.Controllers
             var examination = db.Examinations.Where(s => s.StudentID == studentid && s.SubjectID == subjectid).FirstOrDefault();
             if (examination != null)
             {
-                if (examination.ThesisScore != null && examination.PraticalScore != null)
+                if (examination.ThesisScore != null )
                 {
-                    if (examination.ThesisScore > 5 && mark > 5)
+                    if (examination.ThesisScore >= 5 && mark >= 5)
                     {
                         examination.status = 1;
                     } if (examination.ThesisScore < 5 || mark < 5)
@@ -197,6 +202,8 @@ namespace ExIT.Controllers
             if (pass == true)
             {
                 user.rank = user.rank + 1;
+                Session["Rank"] = null;
+                Session["Rank"] = user.rank + 1;
             }
             db.SaveChanges();
             return Json("true", JsonRequestBehavior.AllowGet);
@@ -555,19 +562,21 @@ namespace ExIT.Controllers
             }
             foreach (var item in courses)
             {
-                bool learn = false;
+                int learn = 0;
                 if (userid != -1)
                 {
                     var registation = db.Registrations.Where(s => s.StudentID == userid && s.CourseID == item.ID).FirstOrDefault();
 
                     if (registation != null)
                     {
-                        learn = true;
+                        learn = registation.status;
+                        
                     }
                     else
                     {
-                        learn = false;
+                        learn = -1;
                     }
+                    
                 }
                 CourseViewModel viewmodel = new CourseViewModel();
                 viewmodel.CourseName = item.name;
@@ -646,14 +655,18 @@ namespace ExIT.Controllers
             }
             foreach (var item in courses)
             {
-                bool learn = false;
+                int learn = 0;
                 if (userid != -1)
                 {
                     var registation = db.Registrations.Where(s => s.StudentID == userid && s.CourseID == item.ID).FirstOrDefault();
 
                     if (registation != null)
                     {
-                        learn = true;
+                        learn = registation.status;
+                    }
+                    else
+                    {
+                        learn = -1;
                     }
                 }
                 CourseViewModel viewmodel = new CourseViewModel();
@@ -718,7 +731,7 @@ namespace ExIT.Controllers
                 {
                     CourseID = course.ID,
                     StudentID = user.ID,
-                    status = true
+                    status = 0
                 });
                 db.SaveChanges();
                 return Json("True", JsonRequestBehavior.AllowGet);
@@ -771,7 +784,7 @@ namespace ExIT.Controllers
             foreach (var item in subjects)
             {
                 PracticalViewModels Practical = new Models.DTO.PracticalViewModels();
-                var exams = db.Examinations.Where(s => s.SubjectID == item.ID && s.PraticalScore == null).ToList();
+                var exams = db.Examinations.Where(s => s.SubjectID == item.ID && s.PraticalScore == null && s.PracticalFile!=null).ToList();
                 int count = exams.Count();
                 Practical.id = item.ID;
                 Practical.name = item.name;

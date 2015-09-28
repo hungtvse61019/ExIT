@@ -34,7 +34,10 @@
                             <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}">
                                 <div class="imgHolder">
                                     <img src="{{course.LinkImg}}" />
-                                    <span ng-show="course.Learn==true">Đang học</span>
+                                    <span ng-show="course.Learn==0">Đang học</span>
+                                    <span ng-show="course.Learn==1">Pass</span>
+
+
                                 </div>
                             </a>
                             <div class="course-content">
@@ -45,10 +48,11 @@
                                         @if (@Session["Rank"] != null)
                                         {
 
-                                            <a data-ng-if="course.Rank===@Session["Rank"].ToString() && course.Learn === true" href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-                                            <a data-ng-if="course.Rank===@Session["Rank"].ToString() && course.Learn !== true" href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                            <a data-ng-if="course.Learn == 0 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                            <a data-ng-if="course.Learn == 1 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
 
-                                            <a data-ng-if="course.Rank!==@Session["Rank"].ToString()" href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                            <a data-ng-if="course.Learn == -1 " href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+
                                         }
                                         else
                                         {

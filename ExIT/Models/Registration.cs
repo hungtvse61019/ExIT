@@ -22,7 +22,7 @@ public partial class Registration
 
     public int CourseID { get; set; }
 
-    public bool status { get; set; }
+    public int status { get; set; }
 
 
 

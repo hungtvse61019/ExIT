@@ -49,10 +49,11 @@ namespace ExIT.Controllers
                     {
                         status = "Pass";
                     }
-                    else
+                    else if (exam.PraticalScore < 5 || exam.ThesisScore < 5)
                     {
                         status = "Fail";
                     }
+                    
                 }
 
             }
@@ -88,21 +89,25 @@ namespace ExIT.Controllers
             int sid = Convert.ToInt32(subjectid);
             var username = Session["Username"].ToString();
             var user = db.Users.Where(s => s.username.ToUpper() == username.ToUpper()).FirstOrDefault();
-
+            var subject = db.Subjects.Where(s => s.ID == sid).FirstOrDefault();
             var examination = db.Examinations.Where(s => s.StudentID == user.ID && s.SubjectID == sid).FirstOrDefault();
             if (examination != null)
             {
-                examination.ThesisScore = (float)(Convert.ToDouble(count / numberQ)) * 10;
+                examination.ThesisScore = (float)(Convert.ToDouble(count / examination.Subject.NumberOfQuestion)) * 10;
                 if (examination.PraticalScore != null)
                 {
-                    if (examination.PraticalScore > 5 && ((float)(Convert.ToDouble(count / numberQ)) * 10) > 5)
+                    if (examination.ThesisScore != null && examination.PraticalScore != null)
                     {
-                        examination.status = 1;
+                        if (examination.PraticalScore > 5 && ((float)(Convert.ToDouble(count / examination.Subject.NumberOfQuestion)) * 10) > 5)
+                        {
+                            examination.status = 1;
+                        }
+                        if (examination.PraticalScore < 5 || ((float)(Convert.ToDouble(count / examination.Subject.NumberOfQuestion)) * 10) < 5)
+                        {
+                            examination.status = -1;
+                        }
                     }
-                    if (examination.PraticalScore < 5 && ((float)(Convert.ToDouble(count / numberQ)) * 10) < 5)
-                    {
-                        examination.status = -1;
-                    }
+                    
                 }
                 examination.ThesisDoneTime = remain;
             }
@@ -113,7 +118,7 @@ namespace ExIT.Controllers
                     SubjectID = sid,
                     StudentID = user.ID,
                     status = 0,
-                    ThesisScore = (float)(Convert.ToDouble(count / numberQ)) * 10,
+                    ThesisScore = (float)(Convert.ToDouble(count / subject.NumberOfQuestion)) * 10,
                     ThesisDoneTime = remain
                 });
             }
@@ -163,13 +168,17 @@ namespace ExIT.Controllers
             var examination = db.Examinations.Where(s => s.StudentID == studentid && s.SubjectID == subjectid).FirstOrDefault();
             if (examination != null)
             {
-                if (examination.ThesisScore > 5 && mark > 5)
+                if (examination.ThesisScore != null && examination.PraticalScore != null)
                 {
-                    examination.status = 1;
-                } if (examination.ThesisScore < 5 && mark < 5)
-                {
-                    examination.status = -1;
+                    if (examination.ThesisScore > 5 && mark > 5)
+                    {
+                        examination.status = 1;
+                    } if (examination.ThesisScore < 5 || mark < 5)
+                    {
+                        examination.status = -1;
+                    }
                 }
+                
 
                 examination.PraticalScore = mark;
             }
@@ -208,10 +217,10 @@ namespace ExIT.Controllers
             {
                 ViewBag.Result = "Fail";
             }
-            int correctAns = (int)((examination.ThesisScore * numberQ) / 10.0);
+            int correctAns = (int)((examination.ThesisScore * examination.Subject.NumberOfQuestion) / 10.0);
             ViewBag.Time = examination.ThesisDoneTime;
             ViewBag.SubjectName = examination.Subject.name;
-            ViewBag.NumberOfQuestion = numberQ;
+            ViewBag.NumberOfQuestion = examination.Subject.NumberOfQuestion;
             ViewBag.CorrectAns = correctAns;
             string message = "";
             if (examination.ThesisScore > 5)
@@ -234,24 +243,38 @@ namespace ExIT.Controllers
         public ActionResult Quiz(int subjectid)
         {
             List<QuestionViewModel> questions = new List<QuestionViewModel>();
-            var quests = db.SubjectQuestions.Where(s => s.SubjectID == subjectid).Take(numberQ).ToList();
-            foreach (var ques in quests)
+            var subject = db.Subjects.Where(s => s.ID == subjectid).FirstOrDefault();
+            var quests = db.SubjectQuestions.Where(s => s.SubjectID == subjectid).ToList();
+//alg vai            var quests = db.SubjectQuestions.Where(s => s.SubjectID == subjectid).Take(subject.NumberOfQuestion).ToList();
+            var newquests = RandomPermutation(quests);
+            int count = 0;
+            foreach (var ques in newquests)
             {
-                QuestionViewModel view = new QuestionViewModel();
-                view.QuestionId = ques.ID;
-                view.QuestionContent = ques.question;
-                view.Answers = new List<AnswerViewModel>();
-                var answers = db.SubjectAnswers.Where(s => s.SubjectQuestionID == ques.ID).ToList();
-                foreach (var ans in answers)
+                if (count < subject.NumberOfQuestion)
                 {
-                    AnswerViewModel ansv = new AnswerViewModel();
-                    ansv.AnswerId = ans.ID;
-                    ansv.AnswerContent = ans.answer;
-                    view.Answers.Add(ansv);
-                }
-                view.Answers = RandomPermutation(view.Answers);
+                    QuestionViewModel view = new QuestionViewModel();
+                    view.QuestionId = ques.ID;
+                    view.QuestionContent = ques.question;
+                    view.Answers = new List<AnswerViewModel>();
+                    var answers = db.SubjectAnswers.Where(s => s.SubjectQuestionID == ques.ID).ToList();
+                    foreach (var ans in answers)
+                    {
+                        AnswerViewModel ansv = new AnswerViewModel();
+                        ansv.AnswerId = ans.ID;
+                        ansv.AnswerContent = ans.answer;
+                        view.Answers.Add(ansv);
+                    }
+                    view.Answers = RandomPermutation(view.Answers);
 
-                questions.Add(view);
+                    questions.Add(view);
+                    count++;
+                }
+                else
+                {
+                    break;
+                }
+
+                
             }
             ViewBag.subjectid = subjectid;
             questions = RandomPermutation(questions);
@@ -474,6 +497,7 @@ namespace ExIT.Controllers
             db.Users.Add(new User()
             {
                 username = username,
+                name = name,
                 address = address,
                 email = email,
                 password = password,
@@ -483,6 +507,8 @@ namespace ExIT.Controllers
             db.SaveChanges();
             Session["UserName"] = username;
             Session["Role"] = 2;
+            Session["Name"] = name;
+            Session["Rank"] = 1;
             return Json("true", JsonRequestBehavior.AllowGet);
         }
 
@@ -585,7 +611,7 @@ namespace ExIT.Controllers
         [HttpPost]
         public ActionResult LoadTeacherIndex()
         {
-            var users = db.Users.Where(s => s.roleId == 1).ToList().Select(s => new
+            var users = db.Users.Where(s => s.roleId == 1).Take(3).ToList().Select(s => new
             {
                 s.name,
                 s.imgUrl,

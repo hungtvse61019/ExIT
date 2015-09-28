@@ -29,22 +29,30 @@
                     {
                         <li>Chưa làm</li>
                     }
-                    if (@Model.PraticalScore != null)
-                    {
-                        <li>@Model.PraticalScore</li>
-                    }
-                    else
+                    if (@Model.PracticalFile == null)
                     {
                         <li>Chưa làm</li>
+
                     }
+                    else
+                        if (@Model.PracticalFile != null && @Model.PraticalScore == null)
+                        {
+                            <li>Chưa chấm điểm</li>
+                        }
+                        else if (@Model.PraticalScore != null)
+                        {
+                            <li>@Model.PraticalScore</li>
+                        }
+
+
                 }
                 else
                 {
                     <li>Chưa làm</li>
-    <li>Chưa làm</li>
+                    <li>Chưa làm</li>
                 }
-                
-                
+
+
                 <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;"> @ViewBag.Status</li>
             </ul>
         </div>

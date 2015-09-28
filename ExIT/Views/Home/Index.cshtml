@@ -12,7 +12,7 @@
             right: 10px;
             top: 10px;
             border: 2px solid green;
-            background-color:red
+            background-color: red;
         }
 </style>
 <div data-ng-controller="IndexCtrl">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        
+
                         <div class="course-box" data-ng-repeat="course in courses">
                             <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
                             <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}">
@@ -44,15 +44,18 @@
                                     <li data-ng-repeat="sub in course.Subjects">
                                         @if (@Session["Rank"] != null)
                                         {
-                                            <a data-ng-if="course.Rank===@Session["Rank"].ToString()" href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+
+                                            <a data-ng-if="course.Rank===@Session["Rank"].ToString() && course.Learn === true" href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                            <a data-ng-if="course.Rank===@Session["Rank"].ToString() && course.Learn !== true" href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+
                                             <a data-ng-if="course.Rank!==@Session["Rank"].ToString()" href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
                                         }
                                         else
                                         {
-                                            <a  href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                            <a href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
 
                                         }
-                                        
+
                                         <span style="color:red">{{sub.Status}}</span>
                                     </li>
                                 </ul>

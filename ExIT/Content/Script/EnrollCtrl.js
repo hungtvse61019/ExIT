@@ -26,7 +26,7 @@ var login = ExItApp.controller("EnrollCtrl", function ($http, $scope, toaster) {
             var crank = parseInt(rankcourse);
 
             if (urank<crank) {
-                $scope.pop("Vui long chon khoa hoc phu hop voi trinh do cua ban", "error");
+                $scope.pop("Vui lòng chọn khóa học phù hợp với trình độ của bạn!", "error");
             } else {
                 $http({
                     method: "POST",
@@ -35,8 +35,13 @@ var login = ExItApp.controller("EnrollCtrl", function ($http, $scope, toaster) {
                         couserid: $("#courseid").val()
                     }
                 }).success(function (data) {
-                    if (data==="True") {
-                        $scope.pop("Dang Ky Khoa Hoc Thanh Cong", "success");
+                    if (data === "True") {
+                        var id = $("#courseid").val();
+                        setTimeout(function () {
+                            var links = "http://" + $(location).attr('host') + "/Home/AllSubjects?courseid="+id;
+                            location.assign(links);
+                        }, 1000);
+                        $scope.pop("Đăng ký khóa học thành công!", "success");
                     }
                 })
             }

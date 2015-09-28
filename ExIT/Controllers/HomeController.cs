@@ -560,6 +560,10 @@ namespace ExIT.Controllers
                     {
                         learn = true;
                     }
+                    else
+                    {
+                        learn = false;
+                    }
                 }
                 CourseViewModel viewmodel = new CourseViewModel();
                 viewmodel.CourseName = item.name;

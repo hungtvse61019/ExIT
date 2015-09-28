@@ -737,7 +737,7 @@ namespace ExIT.Controllers
             foreach (var item in subjects)
             {
                 PracticalViewModels Practical = new Models.DTO.PracticalViewModels();
-                var exams = db.Examinations.Where(s => s.SubjectID == item.ID && s.PraticalScore != null).ToList();
+                var exams = db.Examinations.Where(s => s.SubjectID == item.ID && s.PraticalScore == null).ToList();
                 int count = exams.Count();
                 Practical.id = item.ID;
                 Practical.name = item.name;

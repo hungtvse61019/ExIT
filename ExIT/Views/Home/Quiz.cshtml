@@ -15,6 +15,45 @@
     $(document).ready(function () {
         $(".boxer").boxer();
     });
+    setInterval(function () { myTimer() }, 3000);
+    function myTimer() {
+        var session = $("#SessionTime").val();
+
+        var currentTime = Date.now();
+
+        if (session <= currentTime) {
+            var number = parseInt($("#numbers").val());
+            var val = "";
+            for (var i = 0; i < number; i++) {
+                for (var j = 1; j < 5; j++) {
+                    var num = (i * 4) + j;
+                    var id = "#optionsRadios" + num;
+                    if ($(id).is(':checked')) {
+                        val += $(id).val() + ";";
+                    }
+                }
+
+            }
+            var remain = "15:00";
+            $.ajax({
+                method: "POST",
+                url: "/Home/CheckAnswer",
+                data: {
+                    value: val,
+                    subjectid: $("#subjectid").val(),
+                    remain: remain
+                }
+            }).success(function (data) {
+                if (data === "true") {
+                    setTimeout(function () {
+                        var links = "http://" + $(location).attr('host') + "/Home/ResultQuiz?subjectid=" + $("#subjectid").val();
+                        location.assign(links);
+                    }, 1000);
+                }
+                
+            });
+        }
+    }
 </script>
 
 <script src="~/Content/Script/QuizCtrl.js"></script>
@@ -29,7 +68,7 @@
     @{int i = 0;}
     @{int j = 0;}
 
-
+    <input hidden value="@Session["EndTest"]" id="SessionTime"/>
     @foreach (var ques in Model)
     {
         <div id="question-number">

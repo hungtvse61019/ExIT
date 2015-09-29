@@ -19,29 +19,40 @@ var register = ExItApp.controller("MarkingPraticalCtrl", function ($http, $scope
 
     $scope.marking = function (studentid,subjectid) {
         var error = "";
+        
         var markId = "#"+subjectid + "-" + studentid;
         var mark = $(markId).val();
-        if (mark != null) {
-            $http({
-                method: "POST",
-                url: "/Home/Marking",
-                data: {
-                    studentid: studentid,
-                    subjectid: subjectid,
-                    mark : mark
-                }
-            }).success(function (data) {
-                if (data === "true") {
-                    setTimeout(function () {
-                        var links = "http://" + $(location).attr('host') + "/Home/MarkingPratical?subjectid="+subjectid;
-                        location.assign(links);
-                    }, 1000);
-                    $scope.pop("Cham diem thanh cong!", "success");
-                }
-            })
+        if (mark < 10) {
+            if (mark != null) {
+                $http({
+                    method: "POST",
+                    url: "/Home/Marking",
+                    data: {
+                        studentid: studentid,
+                        subjectid: subjectid,
+                        mark: mark
+                    }
+                }).success(function (data) {
+                    if (data === "true") {
+                        setTimeout(function () {
+                            var links = "http://" + $(location).attr('host') + "/Home/MarkingPratical?subjectid=" + subjectid;
+                            location.assign(links);
+                        }, 1000);
+                        $scope.pop("Cham diem thanh cong!", "success");
+                    } else {
+                        setTimeout(function () {
+                            var links = "http://" + $(location).attr('host') + "/Home/Index";
+                            location.assign(links);
+                        }, 1000);
+                    }
+                })
+            } else {
+                $scope.pop("Vui lòng nhập điểm!", "error");
+            }
         } else {
-            $scope.pop("Vui long nhap diem", "error");
+            $scope.pop("Vui lòng nhập điểm nhỏ hơn 10!", "error");
         }
+        
         
 
     }

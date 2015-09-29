@@ -53,13 +53,17 @@
                     <li>Chưa làm</li>
                 }
 
-                @if (ViewBag.Status != "Pass")
+                @if (ViewBag.Status == "FAIL")
                 {
                     <li style="color: red; font-weight: bold; font-family: Arial; font-size: 30px;">Rớt</li>
                 }
-                else
+                else if (ViewBag.Status == "PASS")
                 {
                     <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;">Đậu</li>
+                }
+                else
+                {
+                    <li style="color: black; font-weight: bold; font-family: Arial; font-size: 30px;">@ViewBag.Status</li>
                 }
 
             </ul>

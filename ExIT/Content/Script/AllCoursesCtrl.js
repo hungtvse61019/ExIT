@@ -21,7 +21,9 @@ var login = ExItApp.controller("AllCourses", function ($http, $scope, toaster) {
             url: "/Home/LoadAllCourses"
         }).success(function (data) {
             $scope.courses = data;
+           
         })
     }
     $scope.load();
+    
 });

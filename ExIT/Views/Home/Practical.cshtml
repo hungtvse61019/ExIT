@@ -56,11 +56,11 @@
         </div>
         <div class="row subject-row">
             <div class="subject-box subject-btn">
-                @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload" }))
                 {
-                    <input type="file" class="btn btn-default" id="fileUpload" name="file" onchange="validation()" style="float: right; width: 100%;"/>
+                    <input type="file" class="btn btn-default" id="fileUpload" name="file" style="float: right; width: 100%;"/>
                     <input type="hidden" name="subjectid" value="@Model.ID" />
-                    <input type="submit" class="btn btn-default btn-red" name="Submit" id="Submit" value="Nộp bài thực hành" />
+                    <input type="button" class="btn btn-default btn-red" name="Submit" id="Submit" value="Nộp bài thực hành" onclick="submitImport()"/>
                 }
                 <style>
                     .btn.btn-red {
@@ -106,7 +106,7 @@
 
         if (re.exec(fname)) {
 
-            document.getElementById('txtFileName').value = (document.getElementById('fileUpload').value).substring(12);
+            return true;
 
         }
 
@@ -114,5 +114,20 @@
 
             alert("file not supported!");
 
+    }
+    function submitImport() {
+        if (ValidateExtension()) {
+            document.getElementById('upload').submit();
+        }
+    }
+    function ValidateExtension() {
+        var fileUpload = document.getElementById("fileUpload");
+        var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(.rar)$");
+        if (!regex.test(fileUpload.value.toLowerCase())) {
+            alert("Hãy chọn tập tin có đuôi là: " + ".rar" + "");
+            return false;
+        }
+        
+        return true;
     }
 </script>

@@ -52,6 +52,11 @@ $(function () {
                             var links = "http://" + $(location).attr('host') + "/Home/ResultQuiz?subjectid=" + $("#subjectid").val();
                             location.assign(links);
                         }, 1000);
+                    } else {
+                        setTimeout(function () {
+                            var links = "http://" + $(location).attr('host') + "/Home/Index";
+                            location.assign(links);
+                        }, 1000);
                     }
                     alert("Data Saved: " + msg);
                 });
@@ -66,4 +71,5 @@ $(function () {
         }
     });
 
+    
 });

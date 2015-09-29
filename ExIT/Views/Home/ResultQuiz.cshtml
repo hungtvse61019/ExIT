@@ -23,11 +23,25 @@
                 <li>@ViewBag.NumberOfQuestion</li>
                 <li>@ViewBag.CorrectAns</li>
                 <li>@ViewBag.Time</li>
-                <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;">@ViewBag.Result</li>
+                @if (ViewBag.Result != "Fail")
+                {
+                    <li style="color: green; font-weight: bold; font-family: Arial; font-size: 30px;">Đậu</li>
+                }
+                else
+                {
+                    <li style="color: red; font-weight: bold; font-family: Arial; font-size: 30px;">Rớt</li>
+                }
             </ul>
         </div>
 
-        <div id="final-result" style="color: green">@ViewBag.Message</div>
+        @if (ViewBag.Result != "Fail")
+        {
+            <div id="final-result" style="color: green">Chúc mừng bạn, bạn đã vượt qua bài kiểm tra!</div>
+        }
+        else
+        {
+            <div id="final-result" style="color: red">Rất tiếc, bạn đã không vượt qua bài kiểm tra!</div>
+        }
     </div>
     <div id="test-control">
         <div class="center-btn">

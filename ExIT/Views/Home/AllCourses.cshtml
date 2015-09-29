@@ -9,13 +9,20 @@
 
         .imgHolder span {
             position: absolute;
-            right: 10px;
-            top: 10px;
-            border: 2px solid green;
-            background-color: red;
+    right: -40px;
+    top: -50px;
+    border: 2px solid green;
+    background-color: white;
+    font-weight: bold;
+    -ms-transform: rotate(20deg);
+    -webkit-transform: rotate(20deg);
+    transform: rotate(30deg);
+    padding: 5px;
         }
+
 </style>
 <script src="~/Content/Script/AllCoursesCtrl.js"></script>
+
 <div data-ng-controller="AllCourses">
     <div id="top-courses-panel" class="panel panel-default">
         <div class="panel-heading">
@@ -26,34 +33,37 @@
             <div class="row">
                 @{int i = 0;}
                 <div class="course-box" data-ng-repeat="course in courses">
-                    <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
-                    <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}">
-                        <div class="imgHolder">
-                            <img src="{{course.LinkImg}}" />
-                            <span ng-show="course.Learn==true">Đang học</span>
+                        <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
+                        <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}">
+                            <div class="imgHolder">
+                                <img src="{{course.LinkImg}}" />
+                                <span ng-show="course.Learn==0">Đang học</span>
+                                <span style="color: green;" ng-show="course.Learn==1">Hoàn thành</span>
+                            </div>
+                        </a>
+                        <div class="course-content">
+                            <h4 class="content-title">Nội dung khóa học</h4>
+                            <ul class="subjects">
+                                <li data-ng-repeat="sub in course.Subjects">
+                                    @{i++;}
+                                    @if (@Session["Rank"] != null)
+                                    {
+                                        <a data-ng-if="course.Learn == 0 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                        <a data-ng-if="course.Learn == 1 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+
+                                        <a data-ng-if="course.Learn == -1 " href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                    }
+
+                                    <span style="color:green" ng-show="sub.Status == 'Pass'"><strong>(Đậu)</strong></span>
+                                    <span style="color:red" ng-show="sub.Status != 'Pass' && sub.Status != ''"><strong>(Rớt)</strong></span>
+                                </li>
+                            </ul>
                         </div>
-                    </a>
-                    <div class="course-content">
-                        <h4 class="content-title">Nội dung khóa học</h4>
-                        <ul class="subjects">
-                            <li data-ng-repeat="sub in course.Subjects">
-                                @{i++;}
-                                @if (@Session["Rank"] != null)
-                                {
-                                    <a data-ng-if="course.Learn == 0 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-                                    <a data-ng-if="course.Learn == 1 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-
-                                    <a data-ng-if="course.Learn == -1 " href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-                                }
-                                else
-                                {
-                                    <a href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-                                }
-
-                                <span style="color:red">{{sub.Status}}</span>
-                            </li>
-                        </ul>
-                    </div>
+                
                 </div>
             </div>
             <div class="row course-row">
@@ -63,3 +73,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+				$('#smart-paginator').smartpaginator({ totalrecords: 7, recordsperpage: 6, length: 4, next: 'Trang kế', prev: 'Trang trước', first: 'Trang đầu', last: 'Trang cuối', theme: 'green', controlsalways: true, onchange: function (newPage) {
+				    $("div.course-box.shown").hide().removeClass("shown");
+				    $("div[page=" + (newPage - 1) + "]").show().addClass("shown");
+				}
+				});
+			});
+</script>

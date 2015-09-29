@@ -237,6 +237,8 @@ ol {
 	font-family: BreeSerif;
 	border-bottom: solid 2px #228b22;
 	padding-bottom: 3px;
+        overflow: hidden;
+    height: 26px;
 }
 
 #top-courses-panel .course-box .course-image img {
@@ -295,7 +297,7 @@ ol {
 	margin-bottom: 15px;
 }
 
-#top-teachers-panel .teacher-seperator:last-of-type {
+#top-teachers-panel .ng-scope:last-of-type .teacher-seperator {
 	background: none;
 	margin-bottom: 0px;
 }
@@ -461,11 +463,11 @@ ol {
 #course-panel .panel-body .course-box {
 	width: 218px;
 	float: left;
-	margin: 0px 13px;
+	margin: 0px 13px 15px 13px;
 }
 
 #course-panel .panel-body .course-box img {
-	width: 230px;
+	width: 208px;
 	height: 120px;
 }
 
@@ -500,11 +502,11 @@ ol {
 #course-panel .panel-body .course-box {
 	width: 218px;
 	float: left;
-	margin: 0px 13px;
+	margin: 0px 13px 15px 13px;
 }
 
 #course-panel .panel-body .course-box img {
-	width: 230px;
+	width: 208px;
 	height: 120px;
 }
 
@@ -717,7 +719,6 @@ a.btn-red:hover, a.btn-green:hover {
 }
 
 #content {
-	background: url(../image/test-background.png) no-repeat;
 	background-position: center;
 	margin-top: 2px;
     border: solid 1px #e46809;
@@ -1007,4 +1008,111 @@ a.btn-red:hover, a.btn-green:hover {
 
 .table tr td img {
 	height: 25px;
+}
+
+#introduction-panel {
+	float: left;
+	width: 300px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffff98+0,ffdc5a+64,ffdc5a+64,feb00a+100 */
+	background: rgb(255,255,152); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmY5OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY0JSIgc3RvcC1jb2xvcj0iI2ZmZGM1YSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY0JSIgc3RvcC1jb2xvcj0iI2ZmZGM1YSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWIwMGEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(255,255,152,1) 0%, rgba(255,220,90,1) 64%, rgba(255,220,90,1) 64%, rgba(254,176,10,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,152,1)), color-stop(64%,rgba(255,220,90,1)), color-stop(64%,rgba(255,220,90,1)), color-stop(100%,rgba(254,176,10,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,152,1) 0%,rgba(255,220,90,1) 64%,rgba(255,220,90,1) 64%,rgba(254,176,10,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,152,1) 0%,rgba(255,220,90,1) 64%,rgba(255,220,90,1) 64%,rgba(254,176,10,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,152,1) 0%,rgba(255,220,90,1) 64%,rgba(255,220,90,1) 64%,rgba(254,176,10,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,152,1) 0%,rgba(255,220,90,1) 64%,rgba(255,220,90,1) 64%,rgba(254,176,10,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff98', endColorstr='#feb00a',GradientType=0 ); /* IE6-8 */
+	padding: 50px 10px;
+	text-align: justify;
+	border-radius: 5px;
+	margin-top: 3px;
+}
+
+.introduction-content h3 {
+	color: #FF4500;
+	font-weight: 600;
+	font-family: BreeSerif;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.introduction-content img {
+	text-align: center;
+	margin: 15px 50px;
+}
+
+#register-panel {
+	float: left;
+	width: 697px;
+	margin-left: 3px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d5f6ff+0,85caef+63,1b92db+100 */
+	background: rgb(213,246,255); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q1ZjZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYzJSIgc3RvcC1jb2xvcj0iIzg1Y2FlZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxYjkyZGIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(213,246,255,1) 0%, rgba(133,202,239,1) 63%, rgba(27,146,219,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(213,246,255,1)), color-stop(63%,rgba(133,202,239,1)), color-stop(100%,rgba(27,146,219,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(213,246,255,1) 0%,rgba(133,202,239,1) 63%,rgba(27,146,219,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(213,246,255,1) 0%,rgba(133,202,239,1) 63%,rgba(27,146,219,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(213,246,255,1) 0%,rgba(133,202,239,1) 63%,rgba(27,146,219,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(213,246,255,1) 0%,rgba(133,202,239,1) 63%,rgba(27,146,219,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5f6ff', endColorstr='#1b92db',GradientType=0 ); /* IE6-8 */
+	padding: 86px 60px;
+	margin-top: 3px;
+	border-radius: 5px;
+}
+
+#register-panel h1 {
+	text-align: center;
+	font-family: BreeSerif;
+	color: #1E90FF;
+}
+
+#register-panel .section-title .number {
+	float: left;
+	font-size: 18px;
+	line-height: 40px;
+	width: 50px;
+	height: 50px;
+	background-color: #4bacc6;
+	text-align: center;
+	border-radius: 25px;
+	border: solid 5px white;
+	color: white;
+}
+
+#register-panel .section-title h3 {
+	line-height: 50px;
+	margin-left: 70px;
+	font-weight: bold;
+	font-family: BreeSerif;
+	color: #e46809;
+	
+}
+
+#register-panel .section .col-sm-2 {
+	width: 200px;
+}
+
+#register-panel .section .col-sm-10 {
+	width: 400px;
+}
+
+#register-panel .btn {
+	width: 200px;
+	float: right;
+	margin-top: 10px;
+	background-color: #4169E1;
+	border: solid 3px #ccc;
+	color: white;
+}
+
+#register-panel .btn:hover {
+	background-color: #4682B4;
+}
+
+#course-panel .thumbnail .caption p:first-of-type {
+	height: 80px;
+	overflow: hidden;
 }

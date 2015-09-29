@@ -58,10 +58,39 @@
             <div class="subject-box subject-btn">
                 @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    <input type="file" id="fileUpload" name="file" onchange="validation()" />
+                    <input type="file" class="btn btn-default" id="fileUpload" name="file" onchange="validation()" style="float: right; width: 100%;"/>
                     <input type="hidden" name="subjectid" value="@Model.ID" />
-                    <input type="submit" name="Submit" id="Submit" value="Nop Bai Kiem Tra" />
+                    <input type="submit" class="btn btn-default btn-red" name="Submit" id="Submit" value="Nộp bài thực hành" />
                 }
+                <style>
+                    .btn.btn-red {
+                        font-weight: bold;
+                        float: right;
+                        margin-left: 15px;
+                        margin-top: 15px;
+                        text-decoration: none;
+                        width: 200px;
+                        text-align: center;
+                        padding: 10px 0px;
+                        border-radius: 5px;
+                        color: white;
+                        background: rgb(195,83,83);
+                        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+                        background: -moz-linear-gradient(top, rgba(195,83,83,1) 0%, rgba(178,34,34,1) 50%, rgba(195,83,83,1) 100%);
+                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(195,83,83,1)), color-stop(50%,rgba(178,34,34,1)), color-stop(100%,rgba(195,83,83,1)));
+                        background: -webkit-linear-gradient(top, rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%);
+                        background: -o-linear-gradient(top, rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%);
+                        background: -ms-linear-gradient(top, rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%);
+                        background: linear-gradient(to bottom, rgba(195,83,83,1) 0%,rgba(178,34,34,1) 50%,rgba(195,83,83,1) 100%);
+                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c35353', endColorstr='#c35353',GradientType=0 );
+                    }
+
+                    .btn-default:hover {
+                        color: #333;
+                        background-color: #e6e6e6;
+                        border-color: #adadad;
+                    }
+                </style>
                 <div id="note">*Lưu ý: Bài nộp phải thuộc định dạng file nén .zip hoặc .rar</div>
             </div>
         </div>

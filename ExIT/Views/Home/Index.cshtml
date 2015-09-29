@@ -9,10 +9,15 @@
 
         .imgHolder span {
             position: absolute;
-            right: 10px;
-            top: 10px;
-            border: 2px solid green;
-            background-color: red;
+    right: -40px;
+    top: -50px;
+    border: 2px solid green;
+    background-color: white;
+    font-weight: bold;
+    -ms-transform: rotate(20deg);
+    -webkit-transform: rotate(20deg);
+    transform: rotate(30deg);
+    padding: 5px;
         }
 </style>
 <div data-ng-controller="IndexCtrl">
@@ -35,7 +40,7 @@
                                 <div class="imgHolder">
                                     <img src="{{course.LinkImg}}" />
                                     <span ng-show="course.Learn==0">Đang học</span>
-                                    <span ng-show="course.Learn==1">Pass</span>
+                                    <span style="color: green;" ng-show="course.Learn==1">Hoàn thành</span>
 
 
                                 </div>
@@ -60,7 +65,8 @@
 
                                         }
 
-                                        <span style="color:red">{{sub.Status}}</span>
+                                        <span style="color:green" ng-show="sub.Status == 'Pass'"><strong>(Đậu)</strong></span>
+                                        <span style="color:red" ng-show="sub.Status != 'Pass' && sub.Status != ''"><strong>(Rớt)</strong></span>
                                     </li>
                                 </ul>
                             </div>
@@ -136,7 +142,7 @@
 
 
 
-    <div id=" top-teachers-panel" class="panel panel-default">
+    <div id="top-teachers-panel" class="panel panel-default">
         <div class="panel-heading">
             <img src="/Content/image/teachers-icon.png" class="panel-icon" />
             <h3 class="panel-title">Giáo Viên Nổi Bật</h3>
@@ -154,8 +160,9 @@
                         </p>
                     </div>
                 </div>
+                <div class="teacher-seperator"></div>
             </div>
-            <div class="teacher-seperator"></div>
+            
 
         </div>
     </div>

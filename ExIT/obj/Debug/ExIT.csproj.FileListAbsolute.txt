@@ -114,6 +114,5 @@ W:\work\Hung\trunk\ExIT\bin\System.Web.WebPages.Deployment.xml
 W:\work\Hung\trunk\ExIT\bin\System.Web.WebPages.Razor.xml
 W:\work\Hung\trunk\ExIT\bin\Antlr3.Runtime.pdb
 W:\work\Hung\trunk\ExIT\bin\Newtonsoft.Json.xml
-W:\work\Hung\trunk\ExIT\obj\Debug\ExIT.csprojResolveAssemblyReference.cache
 W:\work\Hung\trunk\ExIT\obj\Debug\ExIT.dll
 W:\work\Hung\trunk\ExIT\obj\Debug\ExIT.pdb

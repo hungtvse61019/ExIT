@@ -229,6 +229,7 @@ ol {
 	outline-offset: 0px;
 	padding: 15px;
 	background-color: rgba(255,255,255,0.6);
+    margin-top: 15px;
 }
 
 #top-courses-panel .course-box .course-title {
@@ -1133,3 +1134,23 @@ a.btn-red:hover, a.btn-green:hover {
     height: 22px;
     overflow: hidden;
 }
+
+.pagination li a {
+	border-color: #228b22;
+	color: #228b22;
+}
+
+.pagination>.active>a,.pagination>.active>a:focus, .pagination>.active>a:hover{
+	background-color: #228b22;
+    border-color: #228b22;
+}
+
+.pagination>.disabled>a {
+	border-color: #228b22;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover {
+    border-color: #228b22;
+	color: white;
+}
+

@@ -18,9 +18,9 @@
             width: 100px;
             border: none;
             text-align: center;
-            padding: 5px;
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
+            line-height: 25px;
         }
 </style>
 <script src="~/Content/Script/AllSubjectCtrl.js"></script>
@@ -82,7 +82,7 @@
                             }
 
 
-                            
+
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,45 @@
 
 
         </div>
-        <div id="pagination" style="padding-left: 150px;"></div>
+        <style>
+            .compact-theme a {
+                color: #2e6da4;
+                position: relative;
+                float: left;
+                margin-left: -1px;
+                text-decoration: none;
+                border: 1px solid #2e6da4;
+                padding: 5px 10px;
+                font-size: 12px;
+                line-height: 1.5;
+                background: #fff;
+                box-shadow: none;
+            }
+
+                .compact-theme a:hover {
+                    background: #eee;
+                }
+
+            .simple-pagination li {
+                padding: 0px;
+            }
+
+            .compact-theme .current {
+                background: #337ab7;
+                border: 1px solid #2e6da4;
+                color: #fff;
+                box-shadow: none;
+                padding: 5px 10px;
+                font-size: 12px;
+                line-height: 1.5;
+                position: relative;
+                float: left;
+                margin-left: -1px;
+            }
+        </style>
+        <div id="pagination" style="float: right; margin-right: 10px;">
+
+        </div>
     </div>
 </div>
 

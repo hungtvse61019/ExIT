@@ -549,17 +549,17 @@ namespace ExIT.Controllers
                         {
                             if (exam.ThesisScore >= 5 && exam.PraticalScore >= 5)
                             {
-                                status = "PASS";
+                                status = "Đậu";
                             }
                             else
                             {
-                                status = "FAIL";
+                                status = "Rớt";
 
                             }
                         }
                         else
                         {
-                            status = "LEARNING";
+                            status = "Đang học";
                         }
 
 

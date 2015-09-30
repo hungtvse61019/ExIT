@@ -19,6 +19,9 @@
     transform: rotate(30deg);
     padding: 5px;
         }
+        .dissapear{
+            display:none;
+        }
 
 </style>
 <script src="~/Content/Script/AllCoursesCtrl.js"></script>
@@ -32,48 +35,56 @@
         <div class="panel-body">
             <div class="row">
                 @{int i = 0;}
-                <div class="course-box" data-ng-repeat="course in courses">
-                        <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
-                        <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}">
-                            <div class="imgHolder">
-                                <img src="{{course.LinkImg}}" />
-                                <span ng-show="course.Learn==0">Đang học</span>
-                                <span style="color: green;" ng-show="course.Learn==1">Hoàn thành</span>
-                            </div>
-                        </a>
-                        <div class="course-content">
-                            <h4 class="content-title">Nội dung khóa học</h4>
-                            <ul class="subjects">
-                                <li data-ng-repeat="sub in course.Subjects">
-                                    @{i++;}
-                                    @if (@Session["Rank"] != null)
-                                    {
-                                        <a data-ng-if="course.Learn == 0 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-                                        <a data-ng-if="course.Learn == 1 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-
-                                        <a data-ng-if="course.Learn == -1 " href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-                                    }
-                                    else
-                                    {
-                                        <a href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
-                                    }
-
-                                    <span style="color:green" ng-show="sub.Status == 'Pass'"><strong>(Đậu)</strong></span>
-                                    <span style="color:red" ng-show="sub.Status == 'Fail'"><strong>(Rớt)</strong></span>
-                                    <span style="color:red" ng-show="sub.Status == 'Learning'"><strong>(Đang Học)</strong></span>
-                                    <span style="color:red" ng-show="sub.Status == ''"><strong></strong></span>
-
-                                </li>
-
-                            </ul>
-                           
+                <div class="course-box" data-ng-repeat="course in filtered=(courses)|offset:currentPageItem*itemsPerPage|limitTo:itemsPerPage">
+                    <a href="/Home/AllSubjects?courseid={{course.CourseId}}"><h3 class="course-title">{{course.CourseName}}</h3></a>
+                    <a class="course-image" href="/Home/AllSubjects?courseid={{course.CourseId}}">
+                        <div class="imgHolder">
+                            <img src="{{course.LinkImg}}" />
+                            <span ng-show="course.Learn==0">Đang học</span>
+                            <span style="color: green;" ng-show="course.Learn==1">Hoàn thành</span>
                         </div>
-                
+                    </a>
+                    <div class="course-content">
+                        <h4 class="content-title">Nội dung khóa học</h4>
+                        <ul class="subjects">
+                            <li data-ng-repeat="sub in course.Subjects">
+                                @*<tr data-ng-repeat="item in filtered =(ItemsList|orderBy:'productTypeName')|offset:currentPage*itemsPerPage|limitTo:itemsPerPage">*@
+
+                                @{i++;}
+                                @if (@Session["Rank"] != null)
+                                {
+                                    <a data-ng-if="course.Learn == 0 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                    <a data-ng-if="course.Learn == 1 " href="/Home/SubjectDetail?subjectid={{sub.SubjectId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+
+                                    <a data-ng-if="course.Learn == -1 " href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                }
+                                else
+                                {
+                                    <a href="/Home/AllSubjects?courseid={{course.CourseId}}">Bài {{$index+1}}: {{sub.SubjectName}}</a>
+                                }
+
+                                <span style="color:green" ng-show="sub.Status == 'Pass'"><strong>(Đậu)</strong></span>
+                                <span style="color:red" ng-show="sub.Status == 'Fail'"><strong>(Rớt)</strong></span>
+                                <span style="color:red" ng-show="sub.Status == 'Learning'"><strong>(Đang Học)</strong></span>
+                                <span style="color:red" ng-show="sub.Status == ''"><strong></strong></span>
+
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
+                <span id="resultfiltertemp" ng-model="results" class="dissapear">{{filtered.length}}</span>
+
             </div>
             <div class="row course-row">
-                <div id="pagination" style="padding-left: 150px;"></div>
-                
+                @*<div id="pagination" style="padding-left: 150px;"></div>*@
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li data-ng-class="prevPageDisabledItem()"><a data-ng-click="prevPageItem()">&laquo;</a></li>
+                    <li ng-repeat="n in rangeItem()" data-ng-click="setPageItem(n)" data-ng-class="{active:n==currentPageItem}">
+                        <a>{{n+1}}</a>
+                    </li>
+                    <li data-ng-class="nextPageDisabledItem()"><a data-ng-click="nextPageItem()">&raquo;</a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -85,23 +96,6 @@
 <script type="text/javascript">
     //phan 
     $(window).load(function () {
-        var items = $("#top-courses-panel .panel-body .course-box");
-        var numItems = items.length;
-        var perPage = 3;
-        // only show the first 2 (or "first per_page") items initially
-        items.slice(perPage).hide();
-        // now setup pagination
-        $("#pagination").pagination({
-            items: numItems,
-            itemsOnPage: perPage,
-            cssStyle: "compact-theme",
-            onPageClick: function (pageNumber) { // this is where the magic happens
-                // someone changed page, lets hide/show trs appropriately
-                var showFrom = perPage * (pageNumber - 1);
-                var showTo = showFrom + perPage;
-                items.hide() // first hide everything, then show for the new page
-                        .slice(showFrom, showTo).show();
-            }
-        });
+        
     });
 </script>

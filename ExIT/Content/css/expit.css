@@ -1116,3 +1116,20 @@ a.btn-red:hover, a.btn-green:hover {
 	height: 80px;
 	overflow: hidden;
 }
+
+.course-content {
+	height: 179px;
+	overflow: hidden;
+}
+
+.subjects li {
+	width: 270px;
+	height: 20px;
+	overflow: hidden;
+}
+
+.course-box .caption h4 {
+	width: 190px;
+    height: 22px;
+    overflow: hidden;
+}
